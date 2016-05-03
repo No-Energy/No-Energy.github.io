@@ -1,0 +1,600 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>LINQ整理 | No_Energy Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Josh.Yan">
+    
+
+    
+    <meta name="description" content="#　LINQ整理
+1.简单的linq语法//1
+var ss = from r in db.Am_recProScheme
+         select r;
+//2
+var ss1 = db.Am_recProScheme;
+//3
+string sssql = &amp;quot;select * from Am_recProScheme&amp;quot;;
+2.带where的查询//1
+var ss =">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LINQ整理">
+<meta property="og:url" content="https://no-energy.github.io/2016/05/03/LINQ/index.html">
+<meta property="og:site_name" content="No_Energy Blog">
+<meta property="og:description" content="#　LINQ整理
+1.简单的linq语法//1
+var ss = from r in db.Am_recProScheme
+         select r;
+//2
+var ss1 = db.Am_recProScheme;
+//3
+string sssql = &amp;quot;select * from Am_recProScheme&amp;quot;;
+2.带where的查询//1
+var ss =">
+<meta property="og:updated_time" content="2016-05-03T15:54:00.886Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LINQ整理">
+<meta name="twitter:description" content="#　LINQ整理
+1.简单的linq语法//1
+var ss = from r in db.Am_recProScheme
+         select r;
+//2
+var ss1 = db.Am_recProScheme;
+//3
+string sssql = &amp;quot;select * from Am_recProScheme&amp;quot;;
+2.带where的查询//1
+var ss =">
+
+    
+    <link rel="alternative" href="/atom.xml" title="No_Energy Blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="No_Energy Blog" title="No_Energy Blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="No_Energy Blog">No_Energy Blog</a></h1>
+				<h2 class="blog-motto">No_Energy博客</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:no-energy.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/05/03/LINQ/" title="LINQ整理" itemprop="url">LINQ整理</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Josh.Yan" target="_blank" itemprop="author">Josh.Yan</a>
+		
+  <p class="article-time">
+    <time datetime="2016-05-03T15:55:33.000Z" itemprop="datePublished"> Published 2016-05-03</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-简单的linq语法"><span class="toc-number">1.</span> <span class="toc-text">1.简单的linq语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-带where的查询"><span class="toc-number">2.</span> <span class="toc-text">2.带where的查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-简单的函数计算（count，min，max，sum）"><span class="toc-number">3.</span> <span class="toc-text">3.简单的函数计算（count，min，max，sum）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-排序order-by-desc-asc"><span class="toc-number">4.</span> <span class="toc-text">4.排序order by desc/asc</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-top-1"><span class="toc-number">5.</span> <span class="toc-text">5.top(1)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-跳过前面多少条数据取余下的数据"><span class="toc-number">6.</span> <span class="toc-text">6.跳过前面多少条数据取余下的数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-分页数据查询"><span class="toc-number">7.</span> <span class="toc-text">7.分页数据查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-包含，类似like-‘-’"><span class="toc-number">8.</span> <span class="toc-text">8.包含，类似like ‘%%’</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-分组group-by"><span class="toc-number">9.</span> <span class="toc-text">9.分组group by</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-连接查询"><span class="toc-number">10.</span> <span class="toc-text">10.连接查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-sql中的In"><span class="toc-number">11.</span> <span class="toc-text">11.sql中的In</span></a></li></ol>
+		
+		</div>
+		
+		<p>#　LINQ整理</p>
+<h2 id="1-简单的linq语法"><a href="#1-简单的linq语法" class="headerlink" title="1.简单的linq语法"></a>1.简单的linq语法</h2><pre><code>//1
+var ss = from r in db.Am_recProScheme
+         select r;
+//2
+var ss1 = db.Am_recProScheme;
+//3
+string sssql = &quot;select * from Am_recProScheme&quot;;
+</code></pre><h2 id="2-带where的查询"><a href="#2-带where的查询" class="headerlink" title="2.带where的查询"></a>2.带where的查询</h2><pre><code>//1
+var ss = from r in db.Am_recProScheme
+         where r.rpId &gt; 10
+         select r;
+//2
+var ss1 = db.Am_recProScheme.Where(p =&gt; p.rpId &gt; 10);
+//3
+string sssql = &quot;select * from Am_recProScheme where rpid&gt;10&quot;;
+</code></pre><h2 id="3-简单的函数计算（count，min，max，sum）"><a href="#3-简单的函数计算（count，min，max，sum）" class="headerlink" title="3.简单的函数计算（count，min，max，sum）"></a>3.简单的函数计算（count，min，max，sum）</h2><pre><code>//1
+////获取最大的rpId
+//var ss = (from r in db.Am_recProScheme
+//          select r).Max(p =&gt; p.rpId);
+////获取最小的rpId
+//var ss = (from r in db.Am_recProScheme
+//          select r).Min(p =&gt; p.rpId);
+//获取结果集的总数
+//var ss = (from r in db.Am_recProScheme                  
+//         select r).Count();
+//获取rpId的和
+var ss = (from r in db.Am_recProScheme
+          select r).Sum(p =&gt; p.rpId);
+//2
+//var ss1 = db.Am_recProScheme.Max(p=&gt;p.rpId);
+//var ss1 = db.Am_recProScheme.Min(p =&gt; p.rpId);
+//var ss1 = db.Am_recProScheme.Count() ;
+var ss1 = db.Am_recProScheme.Sum(p =&gt; p.rpId);
+Response.Write(ss);
+//3
+string sssql = &quot;select max(rpId) from Am_recProScheme&quot;;
+       sssql = &quot;select min(rpId) from Am_recProScheme&quot;;
+       sssql = &quot;select count(1) from Am_recProScheme&quot;;
+       sssql = &quot;select sum(rpId) from Am_recProScheme&quot;;
+</code></pre><h2 id="4-排序order-by-desc-asc"><a href="#4-排序order-by-desc-asc" class="headerlink" title="4.排序order by desc/asc"></a>4.排序order by desc/asc</h2><pre><code>var ss = from r in db.Am_recProScheme
+         where r.rpId &gt; 10
+         orderby r.rpId descending  //倒序     //ascending  //正序
+         select r;
+//正序
+var ss1 = db.Am_recProScheme.OrderBy(p =&gt; p.rpId).Where(p =&gt; p.rpId &gt; 10).ToList();
+//倒序
+var ss2 = db.Am_recProScheme.OrderByDescending(p =&gt; p.rpId).Where(p =&gt; p.rpId &gt; 10).ToList();
+
+string sssql = &quot;select * from Am_recProScheme where rpid&gt;10 order by rpId [desc|asc]&quot;;
+</code></pre><h2 id="5-top-1"><a href="#5-top-1" class="headerlink" title="5.top(1)"></a>5.top(1)</h2><pre><code>//如果取最后一个可以按倒叙排列再取值
+var ss = (from r in db.Am_recProScheme                     
+          select r).FirstOrDefault();
+//（）linq to ef 好像不支持 Last() 
+var ss1 = db.Am_recProScheme.FirstOrDefault();
+//var ss1 = db.Am_recProScheme.First();          
+string sssql = &quot;select top(1) * from Am_recProScheme&quot;;
+</code></pre><h2 id="6-跳过前面多少条数据取余下的数据"><a href="#6-跳过前面多少条数据取余下的数据" class="headerlink" title="6.跳过前面多少条数据取余下的数据"></a>6.跳过前面多少条数据取余下的数据</h2><pre><code>//1
+var ss = (from r in db.Am_recProScheme
+          orderby r.rpId descending
+          select r).Skip(10); //跳过前10条数据，取10条之后的所有数据   
+//2  
+var ss1 = db.Am_recProScheme.OrderByDescending(p =&gt; p.rpId).Skip(10).ToList();
+//3
+string sssql = &quot;select * from  (select ROW_NUMBER()over(order by rpId desc) as rowNum, * from [Am_recProScheme]) as t where rowNum&gt;10&quot;;
+</code></pre><h2 id="7-分页数据查询"><a href="#7-分页数据查询" class="headerlink" title="7.分页数据查询"></a>7.分页数据查询</h2><pre><code>//1
+var ss = (from r in db.Am_recProScheme
+          where r.rpId &gt; 10
+          orderby r.rpId descending
+          select r).Skip(10).Take(10); //取第11条到第20条数据                   
+//2 Take(10): 数据从开始获取，获取指定数量（10）的连续数据
+var ss1 = db.Am_recProScheme.OrderByDescending(p =&gt; p.rpId).Where(p =&gt; p.rpId &gt; 10).Skip(10).Take(10).ToList();
+//3
+string sssql = &quot;select * from  (select ROW_NUMBER()over(order by rpId desc) as rowNum, * from [Am_recProScheme]) as t where rowNum&gt;10 and rowNum&lt;=20&quot;;
+</code></pre><h2 id="8-包含，类似like-‘-’"><a href="#8-包含，类似like-‘-’" class="headerlink" title="8.包含，类似like ‘%%’"></a>8.包含，类似like ‘%%’</h2><pre><code>//1
+var ss = from r in db.Am_recProScheme
+         where r.SortsText.Contains(&quot;张&quot;)
+         select r;
+//2
+var ss1 = db.Am_recProScheme.Where(p =&gt; p.SortsText.Contains(&quot;张&quot;)).ToList();
+//3
+string sssql = &quot;select * from Am_recProScheme where SortsText like &apos;%张%&apos;&quot;;
+</code></pre><h2 id="9-分组group-by"><a href="#9-分组group-by" class="headerlink" title="9.分组group by"></a>9.分组group by</h2><pre><code>//1
+var ss = from r in db.Am_recProScheme
+         orderby r.rpId descending
+         group r by r.recType into n
+         select new
+         {
+             n.Key,  //这个Key是recType
+             rpId = n.Sum(r =&gt; r.rpId), //组内rpId之和
+             MaxRpId = n.Max(r =&gt; r.rpId),//组内最大rpId
+             MinRpId = n.Min(r =&gt; r.rpId), //组内最小rpId
+         };
+foreach (var t in ss)
+{
+    Response.Write(t.Key + &quot;--&quot; + t.rpId + &quot;--&quot; + t.MaxRpId + &quot;--&quot; + t.MinRpId);
+}
+//2
+var ss1 = from r in db.Am_recProScheme
+         orderby r.rpId descending
+         group r by r.recType into n
+         select n;
+foreach (var t in ss1)
+{
+    Response.Write(t.Key + &quot;--&quot; + t.Min(p =&gt; p.rpId));
+}
+//3
+var ss2 = db.Am_recProScheme.GroupBy(p =&gt; p.recType);
+foreach (var t in ss2)
+{
+    Response.Write(t.Key + &quot;--&quot; + t.Min(p =&gt; p.rpId));
+}
+//4
+string sssql = &quot;select recType,min(rpId),max(rpId),sum(rpId) from Am_recProScheme group by recType&quot;;
+</code></pre><h2 id="10-连接查询"><a href="#10-连接查询" class="headerlink" title="10.连接查询"></a>10.连接查询</h2><pre><code>//1
+var ss = from r in db.Am_recProScheme
+         join w in db.Am_Test_Result on r.rpId equals w.rsId
+         orderby r.rpId descending
+         select r;
+//2
+var ss1 = db.Am_recProScheme.Join(db.Am_Test_Result, p =&gt; p.rpId, r =&gt; r.rsId, (p, r) =&gt; p).OrderByDescending(p =&gt; p.rpId).ToList();
+//3
+string sssql = &quot;select r.* from  [Am_recProScheme] as r inner join [dbo].[Am_Test_Result] as t on r.[rpId] = t.[rsId] order by r.[rpId] desc&quot;;
+</code></pre><h2 id="11-sql中的In"><a href="#11-sql中的In" class="headerlink" title="11.sql中的In"></a>11.sql中的In</h2><pre><code>//1
+var ss = from p in db.Am_recProScheme
+                  where (new int?[] { 24, 25,26 }).Contains(p.rpId)
+                  select p;
+foreach (var p in ss)
+{
+    Response.Write(p.Sorts);
+}
+//2
+string st = &quot;select * from Am_recProScheme where rpId in(24,25,26)&quot;;
+</code></pre><p><a href="http://blog.csdn.net/hb0746/article/details/40123771" target="_blank" rel="external">参考资料</a></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/LINQ/">LINQ</a>
+</div>
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="https://no-energy.github.io/2016/05/03/LINQ/" data-title="LINQ整理 | No_Energy Blog" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2016/05/03/python spider/"  title="Python 爬虫相关">
+ <strong>下一篇：</strong><br/> 
+ <span>Python 爬虫相关
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-简单的linq语法"><span class="toc-number">1.</span> <span class="toc-text">1.简单的linq语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-带where的查询"><span class="toc-number">2.</span> <span class="toc-text">2.带where的查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-简单的函数计算（count，min，max，sum）"><span class="toc-number">3.</span> <span class="toc-text">3.简单的函数计算（count，min，max，sum）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-排序order-by-desc-asc"><span class="toc-number">4.</span> <span class="toc-text">4.排序order by desc/asc</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-top-1"><span class="toc-number">5.</span> <span class="toc-text">5.top(1)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-跳过前面多少条数据取余下的数据"><span class="toc-number">6.</span> <span class="toc-text">6.跳过前面多少条数据取余下的数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-分页数据查询"><span class="toc-number">7.</span> <span class="toc-text">7.分页数据查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-包含，类似like-‘-’"><span class="toc-number">8.</span> <span class="toc-text">8.包含，类似like ‘%%’</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-分组group-by"><span class="toc-number">9.</span> <span class="toc-text">9.分组group by</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-连接查询"><span class="toc-number">10.</span> <span class="toc-text">10.连接查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-sql中的In"><span class="toc-number">11.</span> <span class="toc-text">11.sql中的In</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/LINQ/" title="LINQ">LINQ<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Python/" title="Python">Python<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Josh.Yan <br/>
+			</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2188164645" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/https://github.com/No-Energy" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:No_Energy@outlook.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Josh.Yan">Josh.Yan</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

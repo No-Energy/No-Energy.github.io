@@ -25,7 +25,7 @@ urllib.request #自带库，2.#版本引用 urllib即可re #正则库
 主要用到第三方库requests #第三方库，类似于urllib.request，是Python较好用的http clientbs4 #第三方库，BeautifulSoup
 urllib.request #自带库，2.#版本引用 urllib即可re #正则库
 注意点：123">
-<meta property="og:updated_time" content="2016-05-03T06:52:38.819Z">
+<meta property="og:updated_time" content="2016-05-03T15:26:19.132Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python 爬虫相关">
 <meta name="twitter:description" content="Python爬虫代码位于 GitHub下的WebSpide.pyWebSpide2.pyWebSpide3.py
@@ -60,7 +60,7 @@ urllib.request #自带库，2.#版本引用 urllib即可re #正则库
 				<h1 class="site-name"><a href="/" title="No_Energy Blog">No_Energy Blog</a></h1>
 				<h2 class="blog-motto">No_Energy博客</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -70,13 +70,11 @@ urllib.request #自带库，2.#版本引用 urllib即可re #正则库
 					
 						<li><a href="/archives">Archives</a></li>
 					
-						<li><a href="/about">About</a></li>
-					
 					<li>
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
 						<input type="hidden" name="q" value="site:no-energy.github.io">
 					</form>
 					
@@ -99,24 +97,24 @@ urllib.request #自带库，2.#版本引用 urllib即可re #正则库
 		<a href="/about" title="Josh.Yan" target="_blank" itemprop="author">Josh.Yan</a>
 		
   <p class="article-time">
-    <time datetime="2016-05-03T00:55:29.000Z" itemprop="datePublished"> 发表于 2016-05-03</time>
+    <time datetime="2016-05-03T00:55:29.000Z" itemprop="datePublished"> Published 2016-05-03</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目录</strong>
+			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Python爬虫"><span class="toc-number">1.</span> <span class="toc-text">Python爬虫</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#主要用到第三方库"><span class="toc-number">1.1.</span> <span class="toc-text">主要用到第三方库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注意点："><span class="toc-number">1.2.</span> <span class="toc-text">注意点：</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Python爬虫"><span class="toc-number">1.</span> <span class="toc-text">Python爬虫</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#主要用到第三方库"><span class="toc-number">1.1.</span> <span class="toc-text">主要用到第三方库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意点："><span class="toc-number">1.2.</span> <span class="toc-text">注意点：</span></a></li></ol></li></ol>
 		
 		</div>
 		
-		<h2 id="Python爬虫"><a href="#Python爬虫" class="headerlink" title="Python爬虫"></a>Python爬虫</h2><p>代码位于 <a href="https://github.com/No-Energy/PythonLesson" target="_blank" rel="external">GitHub</a><br>下的<br>WebSpide.py<br>WebSpide2.py<br>WebSpide3.py</p>
+		<h1 id="Python爬虫"><a href="#Python爬虫" class="headerlink" title="Python爬虫"></a>Python爬虫</h1><p>代码位于 <a href="https://github.com/No-Energy/PythonLesson" target="_blank" rel="external">GitHub</a><br>下的<br>WebSpide.py<br>WebSpide2.py<br>WebSpide3.py</p>
 <p><a href="http://www.cnblogs.com/fnng/p/3576154.html" target="_blank" rel="external">参考资料</a></p>
-<h3 id="主要用到第三方库"><a href="#主要用到第三方库" class="headerlink" title="主要用到第三方库"></a>主要用到第三方库</h3><p>requests #第三方库，类似于urllib.request，是Python较好用的http client<br>bs4 #第三方库，BeautifulSoup</p>
+<h2 id="主要用到第三方库"><a href="#主要用到第三方库" class="headerlink" title="主要用到第三方库"></a>主要用到第三方库</h2><p>requests #第三方库，类似于urllib.request，是Python较好用的http client<br>bs4 #第三方库，BeautifulSoup</p>
 <p>urllib.request #自带库，2.#版本引用 urllib即可<br>re #正则库</p>
-<h3 id="注意点："><a href="#注意点：" class="headerlink" title="注意点："></a>注意点：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">def getHtml(url):</span><br><span class="line">    page = urllib.request.urlopen(url)</span><br><span class="line">    html = page.read()</span><br><span class="line">    <span class="built_in">return</span> html.decode(<span class="string">'utf-8'</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="注意点："><a href="#注意点：" class="headerlink" title="注意点："></a>注意点：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">def getHtml(url):</span><br><span class="line">    page = urllib.request.urlopen(url)</span><br><span class="line">    html = page.read()</span><br><span class="line">    <span class="built_in">return</span> html.decode(<span class="string">'utf-8'</span>)</span><br></pre></td></tr></table></figure>
 <p>直接read后编码为byte object形式，需要转换为string object</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">def get_data(url):</span><br><span class="line">  dataList = <span class="string">''</span></span><br><span class="line">  response = requests.get(url)</span><br><span class="line">  <span class="keyword">if</span> response.status_code != 200:</span><br><span class="line">    <span class="built_in">return</span> <span class="string">'noValue'</span></span><br><span class="line">  soup = bs4.BeautifulSoup(response.text,<span class="string">"html.parser"</span>)</span><br><span class="line">  dataList += soup.title.string[4:7]</span><br><span class="line">  <span class="keyword">for</span> meta <span class="keyword">in</span> soup.select(<span class="string">'meta'</span>):</span><br><span class="line">    <span class="keyword">if</span> meta.get(<span class="string">'name'</span>) == <span class="string">'description'</span>:</span><br><span class="line">      dataList += meta.get(<span class="string">'content'</span>)</span><br><span class="line">  dataList += soup.find_all(<span class="string">'img'</span>)[1][<span class="string">'src'</span>]</span><br><span class="line">  <span class="built_in">return</span> dataList</span><br></pre></td></tr></table></figure>
 <p>BeautifulSoup可以解析html语言，使用BeautifulSoup可以建立规则读取网页内容，或者使用<br>正则表达式读取获取需要内容：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">def getImg(html):</span><br><span class="line">    reg = r<span class="string">'src="(.+?\.jpg)" pic_ext'</span></span><br><span class="line">    imgre = re.compile(reg)</span><br><span class="line">    imglist = re.findall(imgre, html)</span><br></pre></td></tr></table></figure></p>
@@ -153,10 +151,10 @@ urllib.request #自带库，2.#版本引用 urllib即可re #正则库
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2016/05/03/hello-world/" title="Hello World">
+ <a href="/2016/05/03/LINQ/" title="LINQ整理">
   <strong>上一篇：</strong><br/>
   <span>
-  Hello World</span>
+  LINQ整理</span>
 </a>
 </div>
 
@@ -166,26 +164,27 @@ urllib.request #自带库，2.#版本引用 urllib即可re #正则库
 	
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目录</strong>
+  <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Python爬虫"><span class="toc-number">1.</span> <span class="toc-text">Python爬虫</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#主要用到第三方库"><span class="toc-number">1.1.</span> <span class="toc-text">主要用到第三方库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注意点："><span class="toc-number">1.2.</span> <span class="toc-text">注意点：</span></a></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Python爬虫"><span class="toc-number">1.</span> <span class="toc-text">Python爬虫</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#主要用到第三方库"><span class="toc-number">1.1.</span> <span class="toc-text">主要用到第三方库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意点："><span class="toc-number">1.2.</span> <span class="toc-text">注意点：</span></a></li></ol></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
   
-
-
-  
 <div class="categorieslist">
-	<p class="asidetitle">分类</p>
+	<p class="asidetitle">Categories</p>
 		<ul>
+		
+		  
+			<li><a href="/categories/LINQ/" title="LINQ">LINQ<sup>1</sup></a></li>
+		  
 		
 		  
 			<li><a href="/categories/Python/" title="Python">Python<sup>1</sup></a></li>
@@ -198,7 +197,7 @@ urllib.request #自带库，2.#版本引用 urllib即可re #正则库
   
 
   <div class="linkslist">
-  <p class="asidetitle">友情链接</p>
+  <p class="asidetitle">Links</p>
     <ul>
         
           <li>
@@ -216,19 +215,6 @@ urllib.request #自带库，2.#版本引用 urllib即可re #正则库
     </ul>
 </div>
 
-  
-
-
-  <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
-</div>
-
-  <div class="weiboshow">
-  <p class="asidetitle">新浪微博</p>
-    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=b3593ceb&dpc=1"></iframe>
-</div>
-
-
 </aside>
 </div>
     </div>
@@ -241,13 +227,16 @@ urllib.request #自带库，2.#版本引用 urllib即可re #正则库
 	
 	
 	<section class="info">
-		<p> Hello ,I&#39;m Larry Page in Google. <br/>
-			This is my blog,believe it or not.</p>
+		<p> Josh.Yan <br/>
+			</p>
 	</section>
 	 
 	<div class="social-font" class="clearfix">
 		
-		<a href="http://weibo.com/2176287895" target="_blank" class="icon-weibo" title="微博"></a>
+		<a href="http://weibo.com/2188164645" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/https://github.com/No-Energy" target="_blank" class="icon-github" title="github"></a>
 		
 		
 		
@@ -257,6 +246,7 @@ urllib.request #自带库，2.#版本引用 urllib即可re #正则库
 		
 		
 		
+		<a href="mailto:No_Energy@outlook.com" target="_blank" class="icon-email" title="Email Me"></a>
 		
 	</div>
 			
@@ -451,7 +441,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 

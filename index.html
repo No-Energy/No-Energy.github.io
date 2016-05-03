@@ -47,7 +47,7 @@
 				<h1 class="site-name"><a href="/" title="No_Energy Blog">No_Energy Blog</a></h1>
 				<h2 class="blog-motto">No_Energy博客</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -57,13 +57,11 @@
 					
 						<li><a href="/archives">Archives</a></li>
 					
-						<li><a href="/about">About</a></li>
-					
 					<li>
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
 						<input type="hidden" name="q" value="site:no-energy.github.io">
 					</form>
 					
@@ -75,114 +73,49 @@
     <div id="container">
       <div id="main">
 
-   
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2016/05/03/LINQ/" title="LINQ整理" itemprop="url">
+  
+    <h1 itemprop="name">LINQ整理</h1>
     
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
+     
+           <p itemprop="description" >#　LINQ整理
+1.简单的linq语法//1
+var ss = from r in db.Am_recProScheme
+         select r;
+//2
+var ss1 = db.Am_recProScheme;
+//3
+string sssql = &amp;quot;</p>
+        
     
-      <a href="/2016/05/03/hello-world/" title="Hello World" itemprop="url">Hello World</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Josh.Yan" target="_blank" itemprop="author">Josh.Yan</a>
-		
-  <p class="article-time">
-    <time datetime="2016-05-03T06:19:13.358Z" itemprop="datePublished"> 发表于 2016-05-03</time>
+    <time datetime="2016-05-03T15:55:33.000Z" itemprop="datePublished">2016-05-03</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2016/05/03/python spider/" title="Python 爬虫相关" itemprop="url">
+  
+    <h1 itemprop="name">Python 爬虫相关</h1>
     
-  </p>
-</header>
-    <div class="article-content">
+     
+           <p itemprop="description" >Python爬虫代码位于 GitHub下的WebSpide.pyWebSpide2.pyWebSpide3.py
+参考资料
+主要用到第三方库requests #第三方库，类似于urllib.request，是Python较好用的http clientbs4 #第三方库，Beaut</p>
         
-        <p>该网站使用 <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>!</p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
     
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/05/03/python spider/" title="Python 爬虫相关" itemprop="url">Python 爬虫相关</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Josh.Yan" target="_blank" itemprop="author">Josh.Yan</a>
-		
-  <p class="article-time">
-    <time datetime="2016-05-03T00:55:29.000Z" itemprop="datePublished"> 发表于 2016-05-03</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h2 id="Python爬虫"><a href="#Python爬虫" class="headerlink" title="Python爬虫"></a>Python爬虫</h2><p>代码位于 <a href="https://github.com/No-Energy/PythonLesson" target="_blank" rel="external">GitHub</a><br>下的<br>WebSpide.py<br>WebSpide2.py<br>WebSpide3.py</p>
-<p><a href="http://www.cnblogs.com/fnng/p/3576154.html" target="_blank" rel="external">参考资料</a></p>
-<h3 id="主要用到第三方库"><a href="#主要用到第三方库" class="headerlink" title="主要用到第三方库"></a>主要用到第三方库</h3><p>requests #第三方库，类似于urllib.request，是Python较好用的http client<br>bs4 #第三方库，BeautifulSoup</p>
-<p>urllib.request #自带库，2.#版本引用 urllib即可<br>re #正则库</p>
-<h3 id="注意点："><a href="#注意点：" class="headerlink" title="注意点："></a>注意点：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">def getHtml(url):</span><br><span class="line">    page = urllib.request.urlopen(url)</span><br><span class="line">    html = page.read()</span><br><span class="line">    <span class="built_in">return</span> html.decode(<span class="string">'utf-8'</span>)</span><br></pre></td></tr></table></figure>
-<p>直接read后编码为byte object形式，需要转换为string object</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">def get_data(url):</span><br><span class="line">  dataList = <span class="string">''</span></span><br><span class="line">  response = requests.get(url)</span><br><span class="line">  <span class="keyword">if</span> response.status_code != 200:</span><br><span class="line">    <span class="built_in">return</span> <span class="string">'noValue'</span></span><br><span class="line">  soup = bs4.BeautifulSoup(response.text,<span class="string">"html.parser"</span>)</span><br><span class="line">  dataList += soup.title.string[4:7]</span><br><span class="line">  <span class="keyword">for</span> meta <span class="keyword">in</span> soup.select(<span class="string">'meta'</span>):</span><br><span class="line">    <span class="keyword">if</span> meta.get(<span class="string">'name'</span>) == <span class="string">'description'</span>:</span><br><span class="line">      dataList += meta.get(<span class="string">'content'</span>)</span><br><span class="line">  dataList += soup.find_all(<span class="string">'img'</span>)[1][<span class="string">'src'</span>]</span><br><span class="line">  <span class="built_in">return</span> dataList</span><br></pre></td></tr></table></figure>
-<p>BeautifulSoup可以解析html语言，使用BeautifulSoup可以建立规则读取网页内容，或者使用<br>正则表达式读取获取需要内容：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">def getImg(html):</span><br><span class="line">    reg = r<span class="string">'src="(.+?\.jpg)" pic_ext'</span></span><br><span class="line">    imgre = re.compile(reg)</span><br><span class="line">    imglist = re.findall(imgre, html)</span><br></pre></td></tr></table></figure></p>
-<p>urllib.request.urlretrieve()方法可以下载需要的内容<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pool = Pool(4)</span><br><span class="line">pool.map(func, listValue)</span><br></pre></td></tr></table></figure></p>
-<p>线程池的使用，func为使用的方法，listValue为对应每一个方法的参数的集合</p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Python/">Python</a>
-</div>
-
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
+    <time datetime="2016-05-03T00:55:29.000Z" itemprop="datePublished">2016-05-03</time>
+  </a>
+</section>
 
 
 
@@ -191,19 +124,20 @@
 
 
 </div>
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
   
-
-
-  
 <div class="categorieslist">
-	<p class="asidetitle">分类</p>
+	<p class="asidetitle">Categories</p>
 		<ul>
+		
+		  
+			<li><a href="/categories/LINQ/" title="LINQ">LINQ<sup>1</sup></a></li>
+		  
 		
 		  
 			<li><a href="/categories/Python/" title="Python">Python<sup>1</sup></a></li>
@@ -216,7 +150,7 @@
   
 
   <div class="linkslist">
-  <p class="asidetitle">友情链接</p>
+  <p class="asidetitle">Links</p>
     <ul>
         
           <li>
@@ -234,19 +168,6 @@
     </ul>
 </div>
 
-  
-
-
-  <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
-</div>
-
-  <div class="weiboshow">
-  <p class="asidetitle">新浪微博</p>
-    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=b3593ceb&dpc=1"></iframe>
-</div>
-
-
 </aside>
 </div>
     </div>
@@ -259,13 +180,16 @@
 	
 	
 	<section class="info">
-		<p> Hello ,I&#39;m Larry Page in Google. <br/>
-			This is my blog,believe it or not.</p>
+		<p> Josh.Yan <br/>
+			</p>
 	</section>
 	 
 	<div class="social-font" class="clearfix">
 		
-		<a href="http://weibo.com/2176287895" target="_blank" class="icon-weibo" title="微博"></a>
+		<a href="http://weibo.com/2188164645" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/https://github.com/No-Energy" target="_blank" class="icon-github" title="github"></a>
 		
 		
 		
@@ -275,6 +199,7 @@
 		
 		
 		
+		<a href="mailto:No_Energy@outlook.com" target="_blank" class="icon-email" title="Email Me"></a>
 		
 	</div>
 			
@@ -392,7 +317,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
