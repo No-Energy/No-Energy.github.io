@@ -1,0 +1,310 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="google-site-verification" content="" />
+  
+  <title>LINQ整理</title>
+  <meta name="author" content="Josh.Yan">
+   <meta name="description" content="LINQ整理简单的linq语法//1
+var ss = from r in db.Am_recProScheme
+         select r;
+//2
+var ss1 = db.Am_recProScheme;
+//3
+string sssql = &amp;quot;select * from A">
+  
+
+  <meta property="og:title" content="LINQ整理"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:site_name" content="No_Energy Blog"/>
+ <meta property="og:image" content="undefined"/>
+  
+  <link rel="alternate" href="/atom.xml" title="No_Energy Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="http://7xs4ih.com1.z0.glb.clouddn.com/plnV4.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</head>
+
+<body>
+  <div id="main">
+    <div class="behind">
+      <div class="back">
+        <a href="/" class="black-color"><i class="fa fa-times-circle-o"></i></a>
+      </div>
+      <div class="description">
+        &nbsp;No_Energy博客
+      </div>
+    </div>
+    <div class="container">
+      
+
+  <article class="standard post">
+    <div class="title">
+      
+  
+    <h1 class="page-title center">
+        LINQ整理
+    </h1>
+  
+
+
+    </div>
+    <div class="meta center">
+      
+<time datetime="2016-05-03T15:55:33.000Z">
+  <i class="fa fa-calendar"></i>&nbsp;
+  2016-05-03
+</time>
+
+
+
+    
+    &nbsp;
+    <i class="fa fa-tag"></i>&nbsp;
+    <a href="/categories/LINQ/">LINQ</a>
+
+
+
+
+
+    </div>
+    <hr>
+    <div class="picture-container">
+      
+    </div>
+    <h1 id="LINQ整理"><a href="#LINQ整理" class="headerlink" title="LINQ整理"></a>LINQ整理</h1><h2 id="简单的linq语法"><a href="#简单的linq语法" class="headerlink" title="简单的linq语法"></a>简单的linq语法</h2><pre><code>//1
+var ss = from r in db.Am_recProScheme
+         select r;
+//2
+var ss1 = db.Am_recProScheme;
+//3
+string sssql = &quot;select * from Am_recProScheme&quot;;
+</code></pre><h2 id="带where的查询"><a href="#带where的查询" class="headerlink" title="带where的查询"></a>带where的查询</h2><pre><code>//1
+var ss = from r in db.Am_recProScheme
+         where r.rpId &gt; 10
+         select r;
+//2
+var ss1 = db.Am_recProScheme.Where(p =&gt; p.rpId &gt; 10);
+//3
+string sssql = &quot;select * from Am_recProScheme where rpid&gt;10&quot;;
+</code></pre><h2 id="简单的函数计算（count，min，max，sum）"><a href="#简单的函数计算（count，min，max，sum）" class="headerlink" title="简单的函数计算（count，min，max，sum）"></a>简单的函数计算（count，min，max，sum）</h2><pre><code>//1
+////获取最大的rpId
+//var ss = (from r in db.Am_recProScheme
+//          select r).Max(p =&gt; p.rpId);
+////获取最小的rpId
+//var ss = (from r in db.Am_recProScheme
+//          select r).Min(p =&gt; p.rpId);
+//获取结果集的总数
+//var ss = (from r in db.Am_recProScheme                  
+//         select r).Count();
+//获取rpId的和
+var ss = (from r in db.Am_recProScheme
+          select r).Sum(p =&gt; p.rpId);
+//2
+//var ss1 = db.Am_recProScheme.Max(p=&gt;p.rpId);
+//var ss1 = db.Am_recProScheme.Min(p =&gt; p.rpId);
+//var ss1 = db.Am_recProScheme.Count() ;
+var ss1 = db.Am_recProScheme.Sum(p =&gt; p.rpId);
+Response.Write(ss);
+//3
+string sssql = &quot;select max(rpId) from Am_recProScheme&quot;;
+       sssql = &quot;select min(rpId) from Am_recProScheme&quot;;
+       sssql = &quot;select count(1) from Am_recProScheme&quot;;
+       sssql = &quot;select sum(rpId) from Am_recProScheme&quot;;
+</code></pre><h2 id="排序order-by-desc-asc"><a href="#排序order-by-desc-asc" class="headerlink" title="排序order by desc/asc"></a>排序order by desc/asc</h2><pre><code>var ss = from r in db.Am_recProScheme
+         where r.rpId &gt; 10
+         orderby r.rpId descending  //倒序     //ascending  //正序
+         select r;
+//正序
+var ss1 = db.Am_recProScheme.OrderBy(p =&gt; p.rpId).Where(p =&gt; p.rpId &gt; 10).ToList();
+//倒序
+var ss2 = db.Am_recProScheme.OrderByDescending(p =&gt; p.rpId).Where(p =&gt; p.rpId &gt; 10).ToList();
+
+string sssql = &quot;select * from Am_recProScheme where rpid&gt;10 order by rpId [desc|asc]&quot;;
+</code></pre><h2 id="top-1"><a href="#top-1" class="headerlink" title="top(1)"></a>top(1)</h2><pre><code>//如果取最后一个可以按倒叙排列再取值
+var ss = (from r in db.Am_recProScheme                     
+          select r).FirstOrDefault();
+//（）linq to ef 好像不支持 Last() 
+var ss1 = db.Am_recProScheme.FirstOrDefault();
+//var ss1 = db.Am_recProScheme.First();          
+string sssql = &quot;select top(1) * from Am_recProScheme&quot;;
+</code></pre><h2 id="跳过前面多少条数据取余下的数据"><a href="#跳过前面多少条数据取余下的数据" class="headerlink" title="跳过前面多少条数据取余下的数据"></a>跳过前面多少条数据取余下的数据</h2><pre><code>//1
+var ss = (from r in db.Am_recProScheme
+          orderby r.rpId descending
+          select r).Skip(10); //跳过前10条数据，取10条之后的所有数据   
+//2  
+var ss1 = db.Am_recProScheme.OrderByDescending(p =&gt; p.rpId).Skip(10).ToList();
+//3
+string sssql = &quot;select * from  (select ROW_NUMBER()over(order by rpId desc) as rowNum, * from [Am_recProScheme]) as t where rowNum&gt;10&quot;;
+</code></pre><h2 id="分页数据查询"><a href="#分页数据查询" class="headerlink" title="分页数据查询"></a>分页数据查询</h2><pre><code>//1
+var ss = (from r in db.Am_recProScheme
+          where r.rpId &gt; 10
+          orderby r.rpId descending
+          select r).Skip(10).Take(10); //取第11条到第20条数据                   
+//2 Take(10): 数据从开始获取，获取指定数量（10）的连续数据
+var ss1 = db.Am_recProScheme.OrderByDescending(p =&gt; p.rpId).Where(p =&gt; p.rpId &gt; 10).Skip(10).Take(10).ToList();
+//3
+string sssql = &quot;select * from  (select ROW_NUMBER()over(order by rpId desc) as rowNum, * from [Am_recProScheme]) as t where rowNum&gt;10 and rowNum&lt;=20&quot;;
+</code></pre><h2 id="包含，类似like-‘-’"><a href="#包含，类似like-‘-’" class="headerlink" title="包含，类似like ‘%%’"></a>包含，类似like ‘%%’</h2><pre><code>//1
+var ss = from r in db.Am_recProScheme
+         where r.SortsText.Contains(&quot;张&quot;)
+         select r;
+//2
+var ss1 = db.Am_recProScheme.Where(p =&gt; p.SortsText.Contains(&quot;张&quot;)).ToList();
+//3
+string sssql = &quot;select * from Am_recProScheme where SortsText like &apos;%张%&apos;&quot;;
+</code></pre><h2 id="分组group-by"><a href="#分组group-by" class="headerlink" title="分组group by"></a>分组group by</h2><pre><code>//1
+var ss = from r in db.Am_recProScheme
+         orderby r.rpId descending
+         group r by r.recType into n
+         select new
+         {
+             n.Key,  //这个Key是recType
+             rpId = n.Sum(r =&gt; r.rpId), //组内rpId之和
+             MaxRpId = n.Max(r =&gt; r.rpId),//组内最大rpId
+             MinRpId = n.Min(r =&gt; r.rpId), //组内最小rpId
+         };
+foreach (var t in ss)
+{
+    Response.Write(t.Key + &quot;--&quot; + t.rpId + &quot;--&quot; + t.MaxRpId + &quot;--&quot; + t.MinRpId);
+}
+//2
+var ss1 = from r in db.Am_recProScheme
+         orderby r.rpId descending
+         group r by r.recType into n
+         select n;
+foreach (var t in ss1)
+{
+    Response.Write(t.Key + &quot;--&quot; + t.Min(p =&gt; p.rpId));
+}
+//3
+var ss2 = db.Am_recProScheme.GroupBy(p =&gt; p.recType);
+foreach (var t in ss2)
+{
+    Response.Write(t.Key + &quot;--&quot; + t.Min(p =&gt; p.rpId));
+}
+//4
+string sssql = &quot;select recType,min(rpId),max(rpId),sum(rpId) from Am_recProScheme group by recType&quot;;
+</code></pre><h2 id="连接查询"><a href="#连接查询" class="headerlink" title="连接查询"></a>连接查询</h2><pre><code>//1
+var ss = from r in db.Am_recProScheme
+         join w in db.Am_Test_Result on r.rpId equals w.rsId
+         orderby r.rpId descending
+         select r;
+//2
+var ss1 = db.Am_recProScheme.Join(db.Am_Test_Result, p =&gt; p.rpId, r =&gt; r.rsId, (p, r) =&gt; p).OrderByDescending(p =&gt; p.rpId).ToList();
+//3
+string sssql = &quot;select r.* from  [Am_recProScheme] as r inner join [dbo].[Am_Test_Result] as t on r.[rpId] = t.[rsId] order by r.[rpId] desc&quot;;
+</code></pre><h2 id="sql中的In"><a href="#sql中的In" class="headerlink" title="sql中的In"></a>sql中的In</h2><pre><code>//1
+var ss = from p in db.Am_recProScheme
+                  where (new int?[] { 24, 25,26 }).Contains(p.rpId)
+                  select p;
+foreach (var p in ss)
+{
+    Response.Write(p.Sorts);
+}
+//2
+string st = &quot;select * from Am_recProScheme where rpId in(24,25,26)&quot;;
+</code></pre><p><a href="http://blog.csdn.net/hb0746/article/details/40123771" target="_blank" rel="external">参考资料</a></p>
+
+
+  </article>
+
+
+
+<div id="disqus_thread"></div>
+<script>
+
+var disqus_config = function () {
+this.page.url = 'https://no-energy.github.io/2016/05/03/LINQ/index.html';
+this.page.identifier = undefined;
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+
+s.src = '//noenergyblog.disqus.com/embed.js';
+
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+
+
+
+    </div>
+  </div>
+  <footer class="page-footer"><div class="clearfix">
+</div>
+<div class="right-foot container">
+
+    <a class="backtop wow fadeIn animated" href="#top" >
+        <i class="fa fa-arrow-right"></i>
+    </a>
+    © 2015-2016
+    <a href="https://github.com/No-Energy/">
+        No_Energy
+    </a>
+
+</div>
+<div class="clearfix">
+</div>
+</footer>
+  <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+// comments below to disable loading animation
+function revealOnScroll() {
+  var scrolled = $(window).scrollTop();
+  $(".excerpt, .index-title, .index-meta, p").each(function() {
+    var current = $(this),
+      height = $(window).outerHeight(),
+      offsetTop = current.offset().top;
+    if (scrolled + height + 50 > offsetTop) {
+      current.addClass("animation");
+    }
+  });
+}
+$(window).on("scroll", revealOnScroll);
+$(window).load(revealOnScroll)
+
+// disqus scripts
+
+
+// dropdown scripts
+$(".dropdown").click(function(event) {
+  var current = $(this);
+  if($(current).children(".dropdown-content").hasClass("open")){
+    event.stopPropagation();
+    $(current).children(".dropdown-content").removeClass("open");
+  } else {
+    event.stopPropagation();
+    $(current).children(".dropdown-content").addClass("open");
+  }
+});
+$(document).click(function(){
+    $(".dropdown-content").removeClass("open");
+})
+
+// back to top scripts
+$("a[href='#top']").click(function() {
+  $("html, body").animate({ scrollTop: 0 }, 500);
+  return false;
+});
+</script>
+
+</body>
+</html>
