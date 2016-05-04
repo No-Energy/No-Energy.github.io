@@ -1,0 +1,181 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="google-site-verification" content="" />
+  
+  <title>Python urllib的urlretrieve()函数解析</title>
+  <meta name="author" content="Josh.Yan">
+   <meta name="description" content="Python urllib的urlretrieve()函数解析下面我们再来看看 urllib 模块提供的 urlretrieve() 函数。urlretrieve() 方法直接将远程数据下载到本地。123&amp;gt;&amp;gt;&amp;gt; help(urllib.urlretrieve)Help on fun">
+  
+
+  <meta property="og:title" content="Python urllib的urlretrieve()函数解析"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:site_name" content="No_Energy Blog"/>
+ <meta property="og:image" content="undefined"/>
+  
+  <link rel="alternate" href="/atom.xml" title="No_Energy Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="http://7xs4ih.com1.z0.glb.clouddn.com/plnV4.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</head>
+
+<body>
+  <div id="main">
+    <div class="behind">
+      <div class="back">
+        <a href="/" class="black-color"><i class="fa fa-times-circle-o"></i></a>
+      </div>
+      <div class="description">
+        &nbsp;No_Energy博客
+      </div>
+    </div>
+    <div class="container">
+      
+
+  <article class="standard post">
+    <div class="title">
+      
+  
+    <h1 class="page-title center">
+        Python urllib的urlretrieve()函数解析
+    </h1>
+  
+
+
+    </div>
+    <div class="meta center">
+      
+<time datetime="2016-05-04T16:12:23.000Z">
+  <i class="fa fa-calendar"></i>&nbsp;
+  2016-05-05
+</time>
+
+
+
+    
+    &nbsp;
+    <i class="fa fa-tag"></i>&nbsp;
+    <a href="/categories/Python/">Python</a>
+
+
+
+
+
+    </div>
+    <hr>
+    <div class="picture-container">
+      
+    </div>
+    <h1 id="Python-urllib的urlretrieve-函数解析"><a href="#Python-urllib的urlretrieve-函数解析" class="headerlink" title="Python urllib的urlretrieve()函数解析"></a>Python urllib的urlretrieve()函数解析</h1><p>下面我们再来看看 urllib 模块提供的 urlretrieve() 函数。urlretrieve() 方法直接将远程数据下载到本地。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; <span class="built_in">help</span>(urllib.urlretrieve)</span><br><span class="line">Help on <span class="keyword">function</span> urlretrieve <span class="keyword">in</span> module urllib:</span><br><span class="line">urlretrieve(url, filename=None, reporthook=None, data=None)</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>参数 finename 指定了保存本地路径（如果参数未指定，urllib会生成一个临时文件保存数据。）</li>
+<li>参数 reporthook 是一个回调函数，当连接上服务器、以及相应的数据块传输完毕时会触发该回调，我们可以利用这个回调函数来显示当前的下载进度。</li>
+<li>参数 data 指 post 到服务器的数据，该方法返回一个包含两个元素的(filename, headers)元组，filename 表示保存到本地的路径，header 表示服务器的响应头。<br>下面通过例子来演示一下这个方法的使用，这个例子将 google 的 html 抓取到本地，保存在 D:/google.html 文件中，同时显示下载的进度。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">import urllib</span><br><span class="line">def cbk(a, b, c):  </span><br><span class="line">    <span class="string">''</span>回调函数 </span><br><span class="line">    @a: 已经下载的数据块 </span><br><span class="line">    @b: 数据块的大小 </span><br><span class="line">    @c: 远程文件的大小 </span><br><span class="line">    <span class="string">''</span></span><br><span class="line">    per = 100.0 * a * b / c  </span><br><span class="line">    <span class="keyword">if</span> per &gt; 100:  </span><br><span class="line">        per = 100 </span><br><span class="line">    <span class="built_in">print</span> <span class="string">'%.2f%%'</span> % per</span><br><span class="line">url = <span class="string">'http://www.google.com'</span></span><br><span class="line"><span class="built_in">local</span> = <span class="string">'d://google.html'</span></span><br><span class="line">urllib.urlretrieve(url, <span class="built_in">local</span>, cbk)</span><br></pre></td></tr></table></figure>
+<p>在 Python Shell 里执行如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">Python 2.7.5 (default, May 15 2013, 22:44:16) [MSC v.1500 64 bit (AMD64)] on win32</span><br><span class="line">Type <span class="string">"copyright"</span>, <span class="string">"credits"</span> or <span class="string">"license()"</span> <span class="keyword">for</span> more information.</span><br><span class="line">&gt;&gt;&gt; import urllib</span><br><span class="line">&gt;&gt;&gt; def cbk(a, b, c):  </span><br><span class="line">    <span class="string">''</span><span class="string">'回调函数 </span><br><span class="line">    @a: 已经下载的数据块 </span><br><span class="line">    @b: 数据块的大小 </span><br><span class="line">    @c: 远程文件的大小 </span><br><span class="line">    '</span><span class="string">''</span> </span><br><span class="line">    per = 100.0 * a * b / c  </span><br><span class="line">    <span class="keyword">if</span> per &gt; 100:  </span><br><span class="line">        per = 100 </span><br><span class="line">    <span class="built_in">print</span> <span class="string">'%.2f%%'</span> % per</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; url = <span class="string">'http://www.google.com'</span></span><br><span class="line">&gt;&gt;&gt; <span class="built_in">local</span> = <span class="string">'d://google.html'</span></span><br><span class="line">&gt;&gt;&gt; urllib.urlretrieve(url, <span class="built_in">local</span>, cbk)</span><br><span class="line">-0.00%</span><br><span class="line">-819200.00%</span><br><span class="line">-1638400.00%</span><br><span class="line">-2457600.00%</span><br><span class="line">(<span class="string">'d://google.html'</span>, &lt;httplib.HTTPMessage instance at 0x0000000003450608&gt;)</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure></p>
+<p>下面是 urlretrieve() 下载文件实例，可以显示下载进度。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"><span class="comment">#encoding:utf-8</span></span><br><span class="line">import urllib</span><br><span class="line">import os</span><br><span class="line">def Schedule(a,b,c):</span><br><span class="line">    <span class="string">''</span></span><br><span class="line">    a:已经下载的数据块</span><br><span class="line">    b:数据块的大小</span><br><span class="line">    c:远程文件的大小</span><br><span class="line">   <span class="string">''</span></span><br><span class="line">    per = 100.0 * a * b / c</span><br><span class="line">    <span class="keyword">if</span> per &gt; 100 :</span><br><span class="line">        per = 100</span><br><span class="line">    <span class="built_in">print</span> <span class="string">'%.2f%%'</span> % per</span><br><span class="line">url = <span class="string">'http://www.python.org/ftp/python/2.7.5/Python-2.7.5.tar.bz2'</span></span><br><span class="line"><span class="comment">#local = url.split('/')[-1]</span></span><br><span class="line"><span class="built_in">local</span> = os.path.join(<span class="string">'/data/software'</span>,<span class="string">'Python-2.7.5.tar.bz2'</span>)</span><br><span class="line">urllib.urlretrieve(url,<span class="built_in">local</span>,Schedule)</span><br><span class="line"><span class="comment">######output######</span></span><br><span class="line"><span class="comment">#0.00%</span></span><br><span class="line"><span class="comment">#0.07%</span></span><br><span class="line"><span class="comment">#0.13%</span></span><br><span class="line"><span class="comment">#0.20%</span></span><br><span class="line"><span class="comment">#....</span></span><br><span class="line"><span class="comment">#99.94%</span></span><br><span class="line"><span class="comment">#100.00%</span></span><br></pre></td></tr></table></figure></p>
+<p>通过上面的练习可以知道，urlopen() 可以轻松获取远端 html 页面信息，然后通过 python 正则对所需要的数据进行分析，匹配出想要用的数据，在利用urlretrieve() 将数据下载到本地。对于访问受限或者对连接数有限制的远程 url 地址可以采用 proxies（代理的方式）连接，如果远程数据量过大，单线程下载太慢的话可以采用多线程下载，这个就是传说中的爬虫。</p>
+
+
+  </article>
+
+
+
+<div id="disqus_thread"></div>
+<script>
+
+var disqus_config = function () {
+this.page.url = 'https://no-energy.github.io/2016/05/05/Python urlliburlretrieve/index.html';
+this.page.identifier = undefined;
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+
+s.src = '//noenergyblog.disqus.com/embed.js';
+
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+
+
+
+    </div>
+  </div>
+  <footer class="page-footer"><div class="clearfix">
+</div>
+<div class="right-foot container">
+
+    <a class="backtop wow fadeIn animated" href="#top" >
+        <i class="fa fa-arrow-right"></i>
+    </a>
+    © 2015-2016
+    <a href="https://github.com/No-Energy/">
+        No_Energy
+    </a>
+
+</div>
+<div class="clearfix">
+</div>
+</footer>
+  <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+// comments below to disable loading animation
+function revealOnScroll() {
+  var scrolled = $(window).scrollTop();
+  $(".excerpt, .index-title, .index-meta, p").each(function() {
+    var current = $(this),
+      height = $(window).outerHeight(),
+      offsetTop = current.offset().top;
+    if (scrolled + height + 50 > offsetTop) {
+      current.addClass("animation");
+    }
+  });
+}
+$(window).on("scroll", revealOnScroll);
+$(window).load(revealOnScroll)
+
+// disqus scripts
+
+
+// dropdown scripts
+$(".dropdown").click(function(event) {
+  var current = $(this);
+  if($(current).children(".dropdown-content").hasClass("open")){
+    event.stopPropagation();
+    $(current).children(".dropdown-content").removeClass("open");
+  } else {
+    event.stopPropagation();
+    $(current).children(".dropdown-content").addClass("open");
+  }
+});
+$(document).click(function(){
+    $(".dropdown-content").removeClass("open");
+})
+
+// back to top scripts
+$("a[href='#top']").click(function() {
+  $("html, body").animate({ scrollTop: 0 }, 500);
+  return false;
+});
+</script>
+
+</body>
+</html>
