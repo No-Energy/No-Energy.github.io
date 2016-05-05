@@ -9,21 +9,15 @@
   
   <title>LINQ整理</title>
   <meta name="author" content="Josh.Yan">
-   <meta name="description" content="LINQ整理简单的linq语法//1
-var ss = from r in db.Am_recProScheme
-         select r;
-//2
-var ss1 = db.Am_recProScheme;
-//3
-string sssql = &amp;quot;select * from A">
+   <meta name="description" content="LINQ整理简单的linq语法1234567//1var ss = from r in db.Am_recProScheme         select r;//2var ss1 = db.Am_recProScheme;//3string sssql = &quot;select * from Am_re">
   
 
   <meta property="og:title" content="LINQ整理"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:site_name" content="No_Energy Blog"/>
+  <meta property="og:site_name" content="No_Energy&#39;s Blog"/>
  <meta property="og:image" content="undefined"/>
   
-  <link rel="alternate" href="/atom.xml" title="No_Energy Blog" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="No_Energy&#39;s Blog" type="application/atom+xml">
   <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="http://7xs4ih.com1.z0.glb.clouddn.com/plnV4.css">
@@ -46,7 +40,7 @@ var _hmt = _hmt || [];
         <a href="/" class="black-color"><i class="fa fa-times-circle-o"></i></a>
       </div>
       <div class="description">
-        &nbsp;No_Energy博客
+        &nbsp;I am not a coder.
       </div>
     </div>
     <div class="container">
@@ -86,139 +80,18 @@ var _hmt = _hmt || [];
     <div class="picture-container">
       
     </div>
-    <h1 id="LINQ整理"><a href="#LINQ整理" class="headerlink" title="LINQ整理"></a>LINQ整理</h1><h2 id="简单的linq语法"><a href="#简单的linq语法" class="headerlink" title="简单的linq语法"></a>简单的linq语法</h2><pre><code>//1
-var ss = from r in db.Am_recProScheme
-         select r;
-//2
-var ss1 = db.Am_recProScheme;
-//3
-string sssql = &quot;select * from Am_recProScheme&quot;;
-</code></pre><h2 id="带where的查询"><a href="#带where的查询" class="headerlink" title="带where的查询"></a>带where的查询</h2><pre><code>//1
-var ss = from r in db.Am_recProScheme
-         where r.rpId &gt; 10
-         select r;
-//2
-var ss1 = db.Am_recProScheme.Where(p =&gt; p.rpId &gt; 10);
-//3
-string sssql = &quot;select * from Am_recProScheme where rpid&gt;10&quot;;
-</code></pre><h2 id="简单的函数计算（count，min，max，sum）"><a href="#简单的函数计算（count，min，max，sum）" class="headerlink" title="简单的函数计算（count，min，max，sum）"></a>简单的函数计算（count，min，max，sum）</h2><pre><code>//1
-////获取最大的rpId
-//var ss = (from r in db.Am_recProScheme
-//          select r).Max(p =&gt; p.rpId);
-////获取最小的rpId
-//var ss = (from r in db.Am_recProScheme
-//          select r).Min(p =&gt; p.rpId);
-//获取结果集的总数
-//var ss = (from r in db.Am_recProScheme                  
-//         select r).Count();
-//获取rpId的和
-var ss = (from r in db.Am_recProScheme
-          select r).Sum(p =&gt; p.rpId);
-//2
-//var ss1 = db.Am_recProScheme.Max(p=&gt;p.rpId);
-//var ss1 = db.Am_recProScheme.Min(p =&gt; p.rpId);
-//var ss1 = db.Am_recProScheme.Count() ;
-var ss1 = db.Am_recProScheme.Sum(p =&gt; p.rpId);
-Response.Write(ss);
-//3
-string sssql = &quot;select max(rpId) from Am_recProScheme&quot;;
-       sssql = &quot;select min(rpId) from Am_recProScheme&quot;;
-       sssql = &quot;select count(1) from Am_recProScheme&quot;;
-       sssql = &quot;select sum(rpId) from Am_recProScheme&quot;;
-</code></pre><h2 id="排序order-by-desc-asc"><a href="#排序order-by-desc-asc" class="headerlink" title="排序order by desc/asc"></a>排序order by desc/asc</h2><pre><code>var ss = from r in db.Am_recProScheme
-         where r.rpId &gt; 10
-         orderby r.rpId descending  //倒序     //ascending  //正序
-         select r;
-//正序
-var ss1 = db.Am_recProScheme.OrderBy(p =&gt; p.rpId).Where(p =&gt; p.rpId &gt; 10).ToList();
-//倒序
-var ss2 = db.Am_recProScheme.OrderByDescending(p =&gt; p.rpId).Where(p =&gt; p.rpId &gt; 10).ToList();
-
-string sssql = &quot;select * from Am_recProScheme where rpid&gt;10 order by rpId [desc|asc]&quot;;
-</code></pre><h2 id="top-1"><a href="#top-1" class="headerlink" title="top(1)"></a>top(1)</h2><pre><code>//如果取最后一个可以按倒叙排列再取值
-var ss = (from r in db.Am_recProScheme                     
-          select r).FirstOrDefault();
-//（）linq to ef 好像不支持 Last() 
-var ss1 = db.Am_recProScheme.FirstOrDefault();
-//var ss1 = db.Am_recProScheme.First();          
-string sssql = &quot;select top(1) * from Am_recProScheme&quot;;
-</code></pre><h2 id="跳过前面多少条数据取余下的数据"><a href="#跳过前面多少条数据取余下的数据" class="headerlink" title="跳过前面多少条数据取余下的数据"></a>跳过前面多少条数据取余下的数据</h2><pre><code>//1
-var ss = (from r in db.Am_recProScheme
-          orderby r.rpId descending
-          select r).Skip(10); //跳过前10条数据，取10条之后的所有数据   
-//2  
-var ss1 = db.Am_recProScheme.OrderByDescending(p =&gt; p.rpId).Skip(10).ToList();
-//3
-string sssql = &quot;select * from  (select ROW_NUMBER()over(order by rpId desc) as rowNum, * from [Am_recProScheme]) as t where rowNum&gt;10&quot;;
-</code></pre><h2 id="分页数据查询"><a href="#分页数据查询" class="headerlink" title="分页数据查询"></a>分页数据查询</h2><pre><code>//1
-var ss = (from r in db.Am_recProScheme
-          where r.rpId &gt; 10
-          orderby r.rpId descending
-          select r).Skip(10).Take(10); //取第11条到第20条数据                   
-//2 Take(10): 数据从开始获取，获取指定数量（10）的连续数据
-var ss1 = db.Am_recProScheme.OrderByDescending(p =&gt; p.rpId).Where(p =&gt; p.rpId &gt; 10).Skip(10).Take(10).ToList();
-//3
-string sssql = &quot;select * from  (select ROW_NUMBER()over(order by rpId desc) as rowNum, * from [Am_recProScheme]) as t where rowNum&gt;10 and rowNum&lt;=20&quot;;
-</code></pre><h2 id="包含，类似like-‘-’"><a href="#包含，类似like-‘-’" class="headerlink" title="包含，类似like ‘%%’"></a>包含，类似like ‘%%’</h2><pre><code>//1
-var ss = from r in db.Am_recProScheme
-         where r.SortsText.Contains(&quot;张&quot;)
-         select r;
-//2
-var ss1 = db.Am_recProScheme.Where(p =&gt; p.SortsText.Contains(&quot;张&quot;)).ToList();
-//3
-string sssql = &quot;select * from Am_recProScheme where SortsText like &apos;%张%&apos;&quot;;
-</code></pre><h2 id="分组group-by"><a href="#分组group-by" class="headerlink" title="分组group by"></a>分组group by</h2><pre><code>//1
-var ss = from r in db.Am_recProScheme
-         orderby r.rpId descending
-         group r by r.recType into n
-         select new
-         {
-             n.Key,  //这个Key是recType
-             rpId = n.Sum(r =&gt; r.rpId), //组内rpId之和
-             MaxRpId = n.Max(r =&gt; r.rpId),//组内最大rpId
-             MinRpId = n.Min(r =&gt; r.rpId), //组内最小rpId
-         };
-foreach (var t in ss)
-{
-    Response.Write(t.Key + &quot;--&quot; + t.rpId + &quot;--&quot; + t.MaxRpId + &quot;--&quot; + t.MinRpId);
-}
-//2
-var ss1 = from r in db.Am_recProScheme
-         orderby r.rpId descending
-         group r by r.recType into n
-         select n;
-foreach (var t in ss1)
-{
-    Response.Write(t.Key + &quot;--&quot; + t.Min(p =&gt; p.rpId));
-}
-//3
-var ss2 = db.Am_recProScheme.GroupBy(p =&gt; p.recType);
-foreach (var t in ss2)
-{
-    Response.Write(t.Key + &quot;--&quot; + t.Min(p =&gt; p.rpId));
-}
-//4
-string sssql = &quot;select recType,min(rpId),max(rpId),sum(rpId) from Am_recProScheme group by recType&quot;;
-</code></pre><h2 id="连接查询"><a href="#连接查询" class="headerlink" title="连接查询"></a>连接查询</h2><pre><code>//1
-var ss = from r in db.Am_recProScheme
-         join w in db.Am_Test_Result on r.rpId equals w.rsId
-         orderby r.rpId descending
-         select r;
-//2
-var ss1 = db.Am_recProScheme.Join(db.Am_Test_Result, p =&gt; p.rpId, r =&gt; r.rsId, (p, r) =&gt; p).OrderByDescending(p =&gt; p.rpId).ToList();
-//3
-string sssql = &quot;select r.* from  [Am_recProScheme] as r inner join [dbo].[Am_Test_Result] as t on r.[rpId] = t.[rsId] order by r.[rpId] desc&quot;;
-</code></pre><h2 id="sql中的In"><a href="#sql中的In" class="headerlink" title="sql中的In"></a>sql中的In</h2><pre><code>//1
-var ss = from p in db.Am_recProScheme
-                  where (new int?[] { 24, 25,26 }).Contains(p.rpId)
-                  select p;
-foreach (var p in ss)
-{
-    Response.Write(p.Sorts);
-}
-//2
-string st = &quot;select * from Am_recProScheme where rpId in(24,25,26)&quot;;
-</code></pre><p><a href="http://blog.csdn.net/hb0746/article/details/40123771" target="_blank" rel="external">参考资料</a></p>
+    <h1 id="LINQ整理"><a href="#LINQ整理" class="headerlink" title="LINQ整理"></a>LINQ整理</h1><h2 id="简单的linq语法"><a href="#简单的linq语法" class="headerlink" title="简单的linq语法"></a>简单的linq语法</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1</span></span><br><span class="line">var ss = from r in db.Am_recProScheme</span><br><span class="line">         select r;</span><br><span class="line"><span class="comment">//2</span></span><br><span class="line">var ss1 = db.Am_recProScheme;</span><br><span class="line"><span class="comment">//3</span></span><br><span class="line"><span class="built_in">string</span> sssql = <span class="string">"select * from Am_recProScheme"</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="带where的查询"><a href="#带where的查询" class="headerlink" title="带where的查询"></a>带where的查询</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1</span></span><br><span class="line">var ss = from r in db.Am_recProScheme</span><br><span class="line">         where r.rpId &gt; <span class="number">10</span></span><br><span class="line">         select r;</span><br><span class="line"><span class="comment">//2</span></span><br><span class="line">var ss1 = db.Am_recProScheme.Where(p =&gt; p.rpId &gt; <span class="number">10</span>);</span><br><span class="line"><span class="comment">//3</span></span><br><span class="line"><span class="built_in">string</span> sssql = <span class="string">"select * from Am_recProScheme where rpid&gt;10"</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="简单的函数计算（count，min，max，sum）"><a href="#简单的函数计算（count，min，max，sum）" class="headerlink" title="简单的函数计算（count，min，max，sum）"></a>简单的函数计算（count，min，max，sum）</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1</span></span><br><span class="line"><span class="comment">////获取最大的rpId</span></span><br><span class="line"><span class="comment">//var ss = (from r in db.Am_recProScheme</span></span><br><span class="line"><span class="comment">//          select r).Max(p =&gt; p.rpId);</span></span><br><span class="line"><span class="comment">////获取最小的rpId</span></span><br><span class="line"><span class="comment">//var ss = (from r in db.Am_recProScheme</span></span><br><span class="line"><span class="comment">//          select r).Min(p =&gt; p.rpId);</span></span><br><span class="line"><span class="comment">//获取结果集的总数</span></span><br><span class="line"><span class="comment">//var ss = (from r in db.Am_recProScheme                  </span></span><br><span class="line"><span class="comment">//         select r).Count();</span></span><br><span class="line"><span class="comment">//获取rpId的和</span></span><br><span class="line">var ss = (from r in db.Am_recProScheme</span><br><span class="line">          select r).Sum(p =&gt; p.rpId);</span><br><span class="line"><span class="comment">//2</span></span><br><span class="line"><span class="comment">//var ss1 = db.Am_recProScheme.Max(p=&gt;p.rpId);</span></span><br><span class="line"><span class="comment">//var ss1 = db.Am_recProScheme.Min(p =&gt; p.rpId);</span></span><br><span class="line"><span class="comment">//var ss1 = db.Am_recProScheme.Count() ;</span></span><br><span class="line">var ss1 = db.Am_recProScheme.Sum(p =&gt; p.rpId);</span><br><span class="line">Response.Write(ss);</span><br><span class="line"><span class="comment">//3</span></span><br><span class="line"><span class="built_in">string</span> sssql = <span class="string">"select max(rpId) from Am_recProScheme"</span>;</span><br><span class="line">       sssql = <span class="string">"select min(rpId) from Am_recProScheme"</span>;</span><br><span class="line">       sssql = <span class="string">"select count(1) from Am_recProScheme"</span>;</span><br><span class="line">       sssql = <span class="string">"select sum(rpId) from Am_recProScheme"</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="排序order-by-desc-asc"><a href="#排序order-by-desc-asc" class="headerlink" title="排序order by desc/asc"></a>排序order by desc/asc</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var ss = from r in db.Am_recProScheme</span><br><span class="line">         where r.rpId &gt; <span class="number">10</span></span><br><span class="line">         orderby r.rpId descending  <span class="comment">//倒序     //ascending  //正序</span></span><br><span class="line">         select r;</span><br><span class="line"><span class="comment">//正序</span></span><br><span class="line">var ss1 = db.Am_recProScheme.OrderBy(p =&gt; p.rpId).Where(p =&gt; p.rpId &gt; <span class="number">10</span>).ToList();</span><br><span class="line"><span class="comment">//倒序</span></span><br><span class="line">var ss2 = db.Am_recProScheme.OrderByDescending(p =&gt; p.rpId).Where(p =&gt; p.rpId &gt; <span class="number">10</span>).ToList();</span><br><span class="line">            </span><br><span class="line"><span class="built_in">string</span> sssql = <span class="string">"select * from Am_recProScheme where rpid&gt;10 order by rpId [desc|asc]"</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="top-1"><a href="#top-1" class="headerlink" title="top(1)"></a>top(1)</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//如果取最后一个可以按倒叙排列再取值</span></span><br><span class="line">var ss = (from r in db.Am_recProScheme                     </span><br><span class="line">          select r).FirstOrDefault();</span><br><span class="line"><span class="comment">//（）linq to ef 好像不支持 Last() </span></span><br><span class="line">var ss1 = db.Am_recProScheme.FirstOrDefault();</span><br><span class="line"><span class="comment">//var ss1 = db.Am_recProScheme.First();          </span></span><br><span class="line"><span class="built_in">string</span> sssql = <span class="string">"select top(1) * from Am_recProScheme"</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="跳过前面多少条数据取余下的数据"><a href="#跳过前面多少条数据取余下的数据" class="headerlink" title="跳过前面多少条数据取余下的数据"></a>跳过前面多少条数据取余下的数据</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1</span></span><br><span class="line">var ss = (from r in db.Am_recProScheme</span><br><span class="line">          orderby r.rpId descending</span><br><span class="line">          select r).Skip(<span class="number">10</span>); <span class="comment">//跳过前10条数据，取10条之后的所有数据   </span></span><br><span class="line"><span class="comment">//2  </span></span><br><span class="line">var ss1 = db.Am_recProScheme.OrderByDescending(p =&gt; p.rpId).Skip(<span class="number">10</span>).ToList();</span><br><span class="line"><span class="comment">//3</span></span><br><span class="line"><span class="built_in">string</span> sssql = <span class="string">"select * from  (select ROW_NUMBER()over(order by rpId desc) as rowNum, * from [Am_recProScheme]) as t where rowNum&gt;10"</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="分页数据查询"><a href="#分页数据查询" class="headerlink" title="分页数据查询"></a>分页数据查询</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1</span></span><br><span class="line">var ss = (from r in db.Am_recProScheme</span><br><span class="line">          where r.rpId &gt; <span class="number">10</span></span><br><span class="line">          orderby r.rpId descending</span><br><span class="line">          select r).Skip(<span class="number">10</span>).Take(<span class="number">10</span>); <span class="comment">//取第11条到第20条数据                   </span></span><br><span class="line"><span class="comment">//2 Take(10): 数据从开始获取，获取指定数量（10）的连续数据</span></span><br><span class="line">var ss1 = db.Am_recProScheme.OrderByDescending(p =&gt; p.rpId).Where(p =&gt; p.rpId &gt; <span class="number">10</span>).Skip(<span class="number">10</span>).Take(<span class="number">10</span>).ToList();</span><br><span class="line"><span class="comment">//3</span></span><br><span class="line"><span class="built_in">string</span> sssql = <span class="string">"select * from  (select ROW_NUMBER()over(order by rpId desc) as rowNum, * from [Am_recProScheme]) as t where rowNum&gt;10 and rowNum&lt;=20"</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="包含，类似like-‘-’"><a href="#包含，类似like-‘-’" class="headerlink" title="包含，类似like ‘%%’"></a>包含，类似like ‘%%’</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1</span></span><br><span class="line">var ss = from r in db.Am_recProScheme</span><br><span class="line">         where r.SortsText.Contains(<span class="string">"张"</span>)</span><br><span class="line">         select r;</span><br><span class="line"><span class="comment">//2</span></span><br><span class="line">var ss1 = db.Am_recProScheme.Where(p =&gt; p.SortsText.Contains(<span class="string">"张"</span>)).ToList();</span><br><span class="line"><span class="comment">//3</span></span><br><span class="line"><span class="built_in">string</span> sssql = <span class="string">"select * from Am_recProScheme where SortsText like '%张%'"</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="分组group-by"><a href="#分组group-by" class="headerlink" title="分组group by"></a>分组group by</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1</span></span><br><span class="line">var ss = from r in db.Am_recProScheme</span><br><span class="line">         orderby r.rpId descending</span><br><span class="line">         group r by r.recType into n</span><br><span class="line">         select new</span><br><span class="line">         &#123;</span><br><span class="line">             n.Key,  <span class="comment">//这个Key是recType</span></span><br><span class="line">             rpId = n.Sum(r =&gt; r.rpId), <span class="comment">//组内rpId之和</span></span><br><span class="line">             MaxRpId = n.Max(r =&gt; r.rpId),<span class="comment">//组内最大rpId</span></span><br><span class="line">             MinRpId = n.Min(r =&gt; r.rpId), <span class="comment">//组内最小rpId</span></span><br><span class="line">         &#125;;</span><br><span class="line">            foreach (var t in ss)</span><br><span class="line">&#123;</span><br><span class="line">    Response.Write(t.Key + <span class="string">"--"</span> + t.rpId + <span class="string">"--"</span> + t.MaxRpId + <span class="string">"--"</span> + t.MinRpId);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//2</span></span><br><span class="line">var ss1 = from r in db.Am_recProScheme</span><br><span class="line">         orderby r.rpId descending</span><br><span class="line">         group r by r.recType into n</span><br><span class="line">         select n;</span><br><span class="line">foreach (var t in ss1)</span><br><span class="line">&#123;</span><br><span class="line">    Response.Write(t.Key + <span class="string">"--"</span> + t.Min(p =&gt; p.rpId));</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//3</span></span><br><span class="line">var ss2 = db.Am_recProScheme.GroupBy(p =&gt; p.recType);</span><br><span class="line">foreach (var t in ss2)</span><br><span class="line">&#123;</span><br><span class="line">    Response.Write(t.Key + <span class="string">"--"</span> + t.Min(p =&gt; p.rpId));</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//4</span></span><br><span class="line"><span class="built_in">string</span> sssql = <span class="string">"select recType,min(rpId),max(rpId),sum(rpId) from Am_recProScheme group by recType"</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="连接查询"><a href="#连接查询" class="headerlink" title="连接查询"></a>连接查询</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1</span></span><br><span class="line">var ss = from r in db.Am_recProScheme</span><br><span class="line">         join w in db.Am_Test_Result on r.rpId equals w.rsId</span><br><span class="line">         orderby r.rpId descending</span><br><span class="line">         select r;</span><br><span class="line"><span class="comment">//2</span></span><br><span class="line">var ss1 = db.Am_recProScheme.Join(db.Am_Test_Result, p =&gt; p.rpId, r =&gt; r.rsId, (p, r) =&gt; p).OrderByDescending(p =&gt; p.rpId).ToList();</span><br><span class="line"><span class="comment">//3</span></span><br><span class="line"><span class="built_in">string</span> sssql = <span class="string">"select r.* from  [Am_recProScheme] as r inner join [dbo].[Am_Test_Result] as t on r.[rpId] = t.[rsId] order by r.[rpId] desc"</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="sql中的In"><a href="#sql中的In" class="headerlink" title="sql中的In"></a>sql中的In</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1</span></span><br><span class="line">var ss = from p in db.Am_recProScheme</span><br><span class="line">                  where (new int?[] &#123; <span class="number">24</span>, <span class="number">25</span>,<span class="number">26</span> &#125;).Contains(p.rpId)</span><br><span class="line">                  select p;</span><br><span class="line">foreach (var p in ss)</span><br><span class="line">&#123;</span><br><span class="line">    Response.Write(p.Sorts);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//2</span></span><br><span class="line"><span class="built_in">string</span> st = <span class="string">"select * from Am_recProScheme where rpId in(24,25,26)"</span>;</span><br></pre></td></tr></table></figure>
+<p><a href="http://blog.csdn.net/hb0746/article/details/40123771" target="_blank" rel="external">参考资料</a></p>
 
 
   </article>
