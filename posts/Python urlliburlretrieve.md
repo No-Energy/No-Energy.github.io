@@ -34,33 +34,7 @@ url = 'http://www.google.com'
 local = 'd://google.html'
 urllib.urlretrieve(url, local, cbk)
 ```
-在 Python Shell 里执行如下：
-``` py
-Python 2.7.5 (default, May 15 2013, 22:44:16) [MSC v.1500 64 bit (AMD64)] on win32
-Type "copyright", "credits" or "license()" for more information.
->>> import urllib
->>> def cbk(a, b, c):  
-    '''回调函数 
-    @a: 已经下载的数据块 
-    @b: 数据块的大小 
-    @c: 远程文件的大小 
-    ''' 
-    per = 100.0 * a * b / c  
-    if per > 100:  
-        per = 100 
-    print '%.2f%%' % per
 
-
->>> url = 'http://www.google.com'
->>> local = 'd://google.html'
->>> urllib.urlretrieve(url, local, cbk)
--0.00%
--819200.00%
--1638400.00%
--2457600.00%
-('d://google.html', <httplib.HTTPMessage instance at 0x0000000003450608>)
->>> 
-```
 下面是 urlretrieve() 下载文件实例，可以显示下载进度。
 ``` py
 #!/usr/bin/python
