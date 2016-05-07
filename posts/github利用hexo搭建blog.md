@@ -26,11 +26,17 @@ node -v
 npm -v
 ```
 来查看环境变量是否成功添加。
+MacOS下在终端中输入查看即可。
+
 成功添加的应该输出正确版本信息：
 ![node.js install](http://ww4.sinaimg.cn/large/826cbe25gw1f3j7a2cq40j20it0camxx.jpg)
 否则需要添加Path环境变量，使`npm`命令生效。(**具体环境变量视安装路径而定**)
 ``` bash
 ;C:\Program Files\nodejs\node_modules\npm
+```
+MacOS下将以下地址添加到$PATH即可。
+``` bash
+/usr/local/bin
 ```
 
 ### 安装Git
@@ -39,6 +45,7 @@ npm -v
 ``` bash
 git -v
 ```
+MacOS同上。
 来验证是否成功安装并添加了环境变量，否则同样需要添加环境变量
 
 ### 在GitHub中创建新repository
@@ -62,6 +69,8 @@ git -v
 ``` bash
 npm install hexo-cli -g
 ```
+**注意:**MacOS下需要命令在root权限下运行，所以需要在前面加上`sudo`
+
 然后你将会看到:
 ![hexo-cli](http://ww3.sinaimg.cn/large/826cbe25gw1f3jabnx9h3j20it0ca76z.jpg)
 可能你会看到一个WARN，但是不用担心，这不会影响你的正常使用。
