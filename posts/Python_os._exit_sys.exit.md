@@ -1,6 +1,6 @@
 ---
 title: Python os._exit() sys.exit()
-date: 2016-5-3 00:24:12
+date: 2015-10-21 19:18:12
 categories: Python
 toc: true
 ---

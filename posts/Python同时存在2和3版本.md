@@ -1,6 +1,6 @@
 ---
 title: Python同时存在2.#和3.#版本时的操作命令
-date: 2016-5-3 00:19:19
+date: 2016-4-25 22:20:19
 categories: Python
 toc: true
 ---
