@@ -14,48 +14,17 @@ toc: true
 
 反射是一个程序集发现及运行的过程，通过反射可以得到*.exe或*.dll等程序集内部的信息。使用反射可以看到一个程序集内部的接口、类、方法、字段、属性、特性等等信息。
 在System.Reflection命名空间内包含多个反射常用的类，下面表格列出了常用的几个类。
-<table>
-    <tr>
-        <td>类型</td>
-        <td>作用</td>
-    </tr>
-    <tr>
-        <td>Assembly</td>
-        <td>通过此类可以加载操纵一个程序集，并获取程序集内部信息</td>
-    </tr>
-    <tr>
-        <td>EventInfo</td>
-        <td>该类保存给定的事件信息</td>
-    </tr>
-    <tr>
-        <td>FieldInfo</td>
-        <td>该类保存给定的字段信息</td>
-    </tr>
-    <tr>
-        <td>MethodInfo</td>
-        <td>该类保存给定的方法信息</td>
-    </tr>
-    <tr>
-        <td>MemberInfo</td>
-        <td>该类是一个基类，它定义了EventInfo、FieldInfo、MethodInfo、PropertyInfo的多个公用行为 </td>
-    </tr>
-    <tr>
-        <td>Module</td>
-        <td>该类可以使你能访问多个程序集中的给定模块</td>
-    </tr>
-    <tr>
-        <td>ParameterInfo</td>
-        <td>该类保存给定的参数信息</td>
-    </tr>
-    <tr>
-        <td>PropertyInfo</td>
-        <td>该类保存给定的属性信息</td>
-    </tr>
-    <tr>
-        <td></td>
-        <td></td>
-    </tr>
-</table>
+
+|类型|作用|
+|---|---|
+|Assembly|通过此类可以加载操纵一个程序集，并获取程序集内部信息|
+|EventInfo|该类保存给定的事件信息|
+|FieldInfo|该类保存给定的字段信息|
+|MethodInfo|该类保存给定的方法信息|
+|MemberInfo|该类是一个基类，它定义了EventInfo、FieldInfo、MethodInfo、PropertyInfo的多个公用行为|
+|Module|该类可以使你能访问多个程序集中的给定模块|
+|ParameterInfo|该类保存给定的参数信息|
+|PropertyInfo|该类保存给定的属性信息|
  
 ## System.Reflection.Assembly类
 通过Assembly可以动态加载程序集，并查看程序集的内部信息，其中最常用的就是`Load()`这个方法。
@@ -158,10 +127,10 @@ foreach (object attribute in propertyInfo.GetCustomAttributes(false))        //�
 ### `Assembly.Load()`方法，`Assembly.LoadFrom()`方法，`Assembly.LoadFile()`方法的区别
 在C#中，我们要使用反射，首先要搞清楚以下命名空间中几个类的关系:
 **System.Reflection命名空间**
-- 1.AppDomain:应用程序域，可以将其理解为一组程序集的逻辑容器
-- 2.Assembly:程序集类
-- 3.Module:模块类
-- 4.Type:使用反射得到类型信息的最核心的类
+1. AppDomain:应用程序域，可以将其理解为一组程序集的逻辑容器
+2. Assembly:程序集类
+3. Module:模块类
+4. Type:使用反射得到类型信息的最核心的类
 他们之间是一种从属关系，也就是说，一个AppDomain可以包含N个Assembly,一个Assembly可以包含N个Module,而一个Module可以包含N个Type.
 
 #### Assembly.Load()
@@ -193,10 +162,10 @@ C:\AppDir\Path1\AssemblyName\AssemblyName.dll
 结论：一般大家应该优先选择Load方法来加载程序集，如果遇到需要使用LoadFrom方法的时候，最好改变设计而用Load方法来代替！
 
 ### 另：`Assembly.LoadFile`与`Assembly.LoadFrom`的区别
-1、Assembly.LoadFile只载入相应的dll文件，比如Assembly.LoadFile（"abc.dll"），则载入abc.dll,假如abc.dll中引用了def.dll的话，def.dll并不会被载入。
+1. Assembly.LoadFile只载入相应的dll文件，比如Assembly.LoadFile（"abc.dll"），则载入abc.dll,假如abc.dll中引用了def.dll的话，def.dll并不会被载入。
 Assembly.LoadFrom则不一样，它会载入dll文件及其引用的其他dll,比如上面的例子，def.dll也会被载入。
 
-2、用Assembly.LoadFrom载入一个Assembly时，会先检查前面是否已经载入过相同名字的Assembly,比如abc.dll有两个版本（版本1在目录1下，版本2放在目录2下），程序一开始时载入了版本1,当使用Assembly.LoadFrom（"2\\abc.dll"）载入版本2时，不能载入，而是返回版本1.Assembly.LoadFile的话则不会做这样的检查，比如上面的例子换成Assembly.LoadFile的话，则能正确载入版本2.
+2. 用Assembly.LoadFrom载入一个Assembly时，会先检查前面是否已经载入过相同名字的Assembly,比如abc.dll有两个版本（版本1在目录1下，版本2放在目录2下），程序一开始时载入了版本1,当使用Assembly.LoadFrom（"2\\abc.dll"）载入版本2时，不能载入，而是返回版本1.Assembly.LoadFile的话则不会做这样的检查，比如上面的例子换成Assembly.LoadFile的话，则能正确载入版本2.
 LoadFile:加载指定路径上的程序集文件的内容。LoadFrom: 根据程序集的文件名加载程序集文件的内容。
 
 区别：
