@@ -7,11 +7,12 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="google-site-verification" content="" />
   
-  <title>LINQ</title>
+  <title>属性的表达方式</title>
   <meta name="author" content="Josh.Yan">
+   <meta name="description" content="属性的表达方式在程序编写中，经常会用到get和set方法，但是当需要封装的是一个’Dictionary’或者’List’时，简单的get和set方法就不再能满足。所以在C#可以使用this方法来满足12345public object this[string key]&amp;#123;    get &amp;#">
   
 
-  
+  <meta property="og:title" content="属性的表达方式"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:site_name" content="No_Energy&#39;s Blog"/>
  <meta property="og:image" content="undefined"/>
@@ -43,98 +44,68 @@ var _hmt = _hmt || [];
       </div>
     </div>
     <div class="container">
-      <nav class="navigator"><nav class="navbar navbar-default navbar-fixed-top">
-  <div class="nav-container">
-
-  <div class="navbar-header">
-    <a href="/" class="navbar-brand">No_Energy</a>
-  </div>
-  
-  <ul class="nav navbar-nav navbar-left">
-
-    <li class="dropdown">
-      <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-        <i class="fa fa-tags fa-lg"></i>
-      </span></a>
-      <ul class="dropdown-content">
-
-          
-           <li><a href="/categories/Net/">.Net</a></li><li><a href="/categories/旅行/">旅行</a></li><li><a href="/categories/LINQ/">LINQ</a></li><li><a href="/categories/Python/">Python</a></li><li><a href="/categories/Hexo/">Hexo</a></li><li><a href="/categories/MSSQL/">MSSQL</a></li>
-
-      </ul>
-    </li>
-  </ul>
-  
-
-  <ul class="nav navbar-nav navbar-right">
-    <li class="dropdown">
-      <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-      <i class="fa fa-link fa-lg"></i>
-      </a>
-      <ul class="dropdown-content">
-        
-          <li>
-            <a href="https://github.com/No-Energy/">
-        GitHub
-      </a>
-    </li>
-     
-          <li>
-            <a href="http://weibo.com/2188164645">
-        Weibo
-      </a>
-    </li>
-     
-    </ul>
-    </li>
-    <li class="archives"><a href="/archives">
-      <i class="fa fa-archive fa-lg"></i>
-    </a></li>
-  </ul>
-  </div>
-</nav></nav>
-
-
-<h1 class="archive-title  category">
-  
-  <i class="fa fa-tag"></i>
-  
-  LINQ
-</h1>
-<div class="archive-num">
-  该分类共 1 篇文章
-</div>
-<div class="archive">
-  
-    
       
 
+  <article class="standard post">
+    <div class="title">
       
+  
+    <h1 class="page-title center">
+        属性的表达方式
+    </h1>
+  
 
-        
 
-        
+    </div>
+    <div class="meta center">
+      
+<time datetime="2015-07-14T03:43:19.000Z">
+  <i class="fa fa-calendar"></i>&nbsp;
+  2015-07-14
+</time>
 
-        
 
-        </ul></section>
-        <section data-link="year-2016" class="section-year">
-            <h2>2016</h2>
-            <ul class="archive-list">
-                <div class="archive-item">
-                    <div class="archive-time">
-                      01-26
-                    </div>
-                    <div class="archive-detail">
-                      <a href="/2016/01/26/LINQ/" class="archive-link">
-                        LINQ整理
-                      </a>
-                    </div>
-                </div>
-                <hr>
-                
+
     
-</div>
+    &nbsp;
+    <i class="fa fa-tag"></i>&nbsp;
+    <a href="/categories/Net/">.Net</a>
+
+
+
+
+
+    </div>
+    <hr>
+    <div class="picture-container">
+      
+    </div>
+    <h1 id="属性的表达方式"><a href="#属性的表达方式" class="headerlink" title="属性的表达方式"></a>属性的表达方式</h1><p>在程序编写中，经常会用到get和set方法，但是当需要封装的是一个’Dictionary’或者’List’时，简单的get和set方法就不再能满足。<br>所以在C#可以使用this方法来满足<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public object this[string key]</span><br><span class="line">&#123;</span><br><span class="line">    get &#123; return Dictionary[key]; &#125;</span><br><span class="line">    set &#123; Dictionary.Add(key, value); &#125;     </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>相似的，在VB中使用’Property’属性就可以了。<br><figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Public</span> <span class="keyword">Default</span> <span class="keyword">Property</span> Item(<span class="keyword">ByVal</span> <span class="keyword">key</span> <span class="keyword">As</span> <span class="built_in">String</span>) <span class="keyword">As</span> <span class="built_in">Object</span></span><br></pre></td></tr></table></figure></p>
+
+
+  </article>
+
+
+
+<div id="disqus_thread"></div>
+<script>
+
+var disqus_config = function () {
+this.page.url = 'https://no-energy.github.io/2015/07/14/属性表达方式/index.html';
+this.page.identifier = undefined;
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+
+s.src = '//noenergyblog.disqus.com/embed.js';
+
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+
 
 
     </div>

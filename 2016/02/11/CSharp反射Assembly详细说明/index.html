@@ -1,0 +1,267 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="google-site-verification" content="" />
+  
+  <title>C#反射Assembly详细说明</title>
+  <meta name="author" content="Josh.Yan">
+   <meta name="description" content="C#反射Assembly详细说明参考资料
+
+对C#反射机制的理解
+概念理解后，必须找到方法去完成，给出管理的主要语法
+最终给出实用的例子，反射出来dll中的方法
+
+反射是一个程序集发现及运行的过程，通过反射可以得到.exe或.dll等程序集内部的信息。使用反射可以看到一个程序集内部的接口、类、方法、">
+  
+
+  <meta property="og:title" content="C#反射Assembly详细说明"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:site_name" content="No_Energy&#39;s Blog"/>
+ <meta property="og:image" content="undefined"/>
+  
+  <link rel="alternate" href="/atom.xml" title="No_Energy&#39;s Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="http://7xs4ih.com1.z0.glb.clouddn.com/plnV4.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</head>
+
+<body>
+  <div id="main">
+    <div class="behind">
+      <div class="back">
+        <a href="/" class="black-color"><i class="fa fa-times-circle-o"></i></a>
+      </div>
+      <div class="description">
+        &nbsp;I am not a coder.
+      </div>
+    </div>
+    <div class="container">
+      
+
+  <article class="standard post">
+    <div class="title">
+      
+  
+    <h1 class="page-title center">
+        C#反射Assembly详细说明
+    </h1>
+  
+
+
+    </div>
+    <div class="meta center">
+      
+<time datetime="2016-02-10T16:11:19.000Z">
+  <i class="fa fa-calendar"></i>&nbsp;
+  2016-02-11
+</time>
+
+
+
+    
+    &nbsp;
+    <i class="fa fa-tag"></i>&nbsp;
+    <a href="/categories/Net/">.Net</a>
+
+
+
+
+
+    </div>
+    <hr>
+    <div class="picture-container">
+      
+    </div>
+    <h1 id="C-反射Assembly详细说明"><a href="#C-反射Assembly详细说明" class="headerlink" title="C#反射Assembly详细说明"></a>C#反射Assembly详细说明</h1><p><a href="http://blog.csdn.net/lyncai/article/details/8621880" target="_blank" rel="external">参考资料</a></p>
+<ul>
+<li>对C#反射机制的理解</li>
+<li>概念理解后，必须找到方法去完成，给出管理的主要语法</li>
+<li>最终给出实用的例子，反射出来dll中的方法</li>
+</ul>
+<p>反射是一个程序集发现及运行的过程，通过反射可以得到<em>.exe或</em>.dll等程序集内部的信息。使用反射可以看到一个程序集内部的接口、类、方法、字段、属性、特性等等信息。<br>在System.Reflection命名空间内包含多个反射常用的类，下面表格列出了常用的几个类。</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Assembly</td>
+<td>通过此类可以加载操纵一个程序集，并获取程序集内部信息</td>
+</tr>
+<tr>
+<td>EventInfo</td>
+<td>该类保存给定的事件信息</td>
+</tr>
+<tr>
+<td>FieldInfo</td>
+<td>该类保存给定的字段信息</td>
+</tr>
+<tr>
+<td>MethodInfo</td>
+<td>该类保存给定的方法信息</td>
+</tr>
+<tr>
+<td>MemberInfo</td>
+<td>该类是一个基类，它定义了EventInfo、FieldInfo、MethodInfo、PropertyInfo的多个公用行为</td>
+</tr>
+<tr>
+<td>Module</td>
+<td>该类可以使你能访问多个程序集中的给定模块</td>
+</tr>
+<tr>
+<td>ParameterInfo</td>
+<td>该类保存给定的参数信息</td>
+</tr>
+<tr>
+<td>PropertyInfo</td>
+<td>该类保存给定的属性信息</td>
+</tr>
+</tbody>
+</table>
+<h2 id="System-Reflection-Assembly类"><a href="#System-Reflection-Assembly类" class="headerlink" title="System.Reflection.Assembly类"></a>System.Reflection.Assembly类</h2><p>通过Assembly可以动态加载程序集，并查看程序集的内部信息，其中最常用的就是<code>Load()</code>这个方法。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Assembly assembly=Assembly.Load(<span class="string">"MyAssembly"</span>);</span><br></pre></td></tr></table></figure></p>
+<p>利用Assembly的<code>object CreateInstance(string)</code>方法可以反射创建一个对象，参数0为类名。</p>
+<h2 id="System-Type类"><a href="#System-Type类" class="headerlink" title="System.Type类"></a>System.Type类</h2><p>Type是最常用到的类，通过Type可以得到一个类的内部信息，也可以通过它反射创建一个对象。一般有三个常用的方法可得到Type对象。<br>利用<code>typeof()</code>得到Type对象<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Type type=typeof(Example);</span><br></pre></td></tr></table></figure></p>
+<p>利用<code>System.Object.GetType()</code>得到Type对象<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Example example=new Example();</span><br><span class="line">Type type=example.GetType();</span><br></pre></td></tr></table></figure></p>
+<p>利用<code>System.Type.GetType()</code>得到Type对象<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Type type=Type.GetType(<span class="string">"MyAssembly.Example"</span>,false,true);</span><br></pre></td></tr></table></figure></p>
+<p>注意参数0是类名，参数1表示若找不到对应类时是否抛出异常，参数1表示类名是否区分大小写<br>例子：<br>我们最常见的是利用反射与Activator结合来创建对象。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Assembly assembly= Assembly.Load(<span class="string">"MyAssembly"</span>);</span><br><span class="line">Type type=assembly.GetType(<span class="string">"Example"</span>);</span><br><span class="line">object obj=Activator.CreateInstance(type);</span><br></pre></td></tr></table></figure></p>
+<h2 id="反射方法"><a href="#反射方法" class="headerlink" title="反射方法"></a>反射方法</h2><h3 id="通过-System-Reflection-MethodInfo能查找到类里面的方法"><a href="#通过-System-Reflection-MethodInfo能查找到类里面的方法" class="headerlink" title="通过 System.Reflection.MethodInfo能查找到类里面的方法"></a>通过 System.Reflection.MethodInfo能查找到类里面的方法</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Type type=typeof(Example);  </span><br><span class="line">MethodInfo[] listMethodInfo=type.GetMethods();  </span><br><span class="line">foreach(MethodInfo methodInfo in listMethodInfo)  </span><br><span class="line">Cosole.WriteLine(<span class="string">"Method name is "</span>+methodInfo.Name);</span><br></pre></td></tr></table></figure>
+<h3 id="我们也能通过反射方法执行类里面的方法"><a href="#我们也能通过反射方法执行类里面的方法" class="headerlink" title="我们也能通过反射方法执行类里面的方法"></a>我们也能通过反射方法执行类里面的方法</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Assembly assembly= Assembly.Load(<span class="string">"MyAssembly"</span>);  </span><br><span class="line">Type type=assembly.GetType(<span class="string">"Example"</span>);  </span><br><span class="line">object obj=Activator.CreateInstance(type);  </span><br><span class="line">MethodInfo methodInfo=type.GetMethod(<span class="string">"Hello World"</span>);  <span class="comment">//根据方法名获取MethodInfo对象  </span></span><br><span class="line">methodInfo.Invoke(obj,null);  <span class="comment">//参数1类型为object[]，代表Hello World方法的对应参数，输入值为null代表没有参数</span></span><br></pre></td></tr></table></figure>
+<h2 id="反射属性"><a href="#反射属性" class="headerlink" title="反射属性"></a>反射属性</h2><h3 id="通过-System-Reflection-PropertyInfo-能查找到类里面的属性"><a href="#通过-System-Reflection-PropertyInfo-能查找到类里面的属性" class="headerlink" title="通过 System.Reflection.PropertyInfo 能查找到类里面的属性"></a>通过 System.Reflection.PropertyInfo 能查找到类里面的属性</h3><p>常用的方法有GetValue（object,object[]) 获取属性值和 SetValue(object,object,object[]) 设置属性值<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Type type=typeof(Example);  </span><br><span class="line">PropertyInfo[] listPropertyInfo=type.GetProperties();  </span><br><span class="line">foreach(PropertyInfo propertyInfo in listPropertyInfo)  </span><br><span class="line">Cosole.WriteLine(<span class="string">"Property name is "</span>+ propertyInfo.Name);</span><br></pre></td></tr></table></figure></p>
+<h3 id="我们也可以通过以下方法设置或者获取一个对象的属性值"><a href="#我们也可以通过以下方法设置或者获取一个对象的属性值" class="headerlink" title="我们也可以通过以下方法设置或者获取一个对象的属性值"></a>我们也可以通过以下方法设置或者获取一个对象的属性值</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Assembly assembly=Assembly.Load(<span class="string">"MyAssembly"</span>);  </span><br><span class="line">Type type=assembly.GetType(<span class="string">"Example"</span>);  </span><br><span class="line">object obj=Activator.CreateInstance(type);  </span><br><span class="line">PropertyInfo propertyInfo=obj.GetProperty(<span class="string">"Name"</span>);    <span class="comment">//获取Name属性对象  </span></span><br><span class="line">var name=propertyInfo.GetValue(obj,null）;                <span class="comment">//获取Name属性的值  </span></span><br><span class="line">PropertyInfo propertyInfo2=obj.GetProperty(<span class="string">"Age"</span>);     <span class="comment">//获取Age属性对象  </span></span><br><span class="line">propertyInfo.SetValue(obj,<span class="number">34</span>,null);                              <span class="comment">//把Age属性设置为34</span></span><br></pre></td></tr></table></figure>
+<h2 id="反射字段"><a href="#反射字段" class="headerlink" title="反射字段"></a>反射字段</h2><p>通过 System.Reflection.FieldInfo 能查找到类里面的字段<br>它包括有两个常用方法<code>SetValue（object,object)</code>和<code>GetValue(object)</code>使用方法与反射属性非常相似</p>
+<h2 id="反射特性"><a href="#反射特性" class="headerlink" title="反射特性"></a>反射特性</h2><p>通过<code>System.Reflection.MemberInfo的GetCustomAttributes(Type,bool)</code>就可反射出一个类里面的特性,以下例子可以反射出一个类的所有特性<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Type type=typeof(<span class="string">"Example"</span>);  </span><br><span class="line">object[] typeAttributes=type.GetCustomAttributes(false);       <span class="comment">//获取Example类的特性  </span></span><br><span class="line">foreach(object attribute in typeAttributes)  </span><br><span class="line">Console.WriteLine(<span class="string">"Attributes description is "</span>+attribute.ToString());</span><br></pre></td></tr></table></figure></p>
+<p>通过下面例子，可以获取Example类Name属性的所有特性通过下面例子，可以获取Example类Name属性的所有特性<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> Example  </span><br><span class="line">&#123;  </span><br><span class="line">    [DataMemberAttribute]  </span><br><span class="line">    publics <span class="built_in">string</span> Name  </span><br><span class="line">    &#123;get;<span class="built_in">set</span>;&#125;  </span><br><span class="line">    ..................  </span><br><span class="line">&#125;  </span><br><span class="line">Type type = typeof(Example);          </span><br><span class="line">PropertyInfo propertyInfo=type.GetProperty(<span class="string">"Name"</span>);    <span class="comment">//获取Example类的Name属性  </span></span><br><span class="line">foreach (object attribute in propertyInfo.GetCustomAttributes(false))        <span class="comment">//遍历Name属性的所有特性  </span></span><br><span class="line">    Console.WriteLine(<span class="string">"Property attribute: "</span>+attribute.ToString());</span><br></pre></td></tr></table></figure></p>
+<h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h2><h3 id="Assembly-Load-方法，Assembly-LoadFrom-方法，Assembly-LoadFile-方法的区别"><a href="#Assembly-Load-方法，Assembly-LoadFrom-方法，Assembly-LoadFile-方法的区别" class="headerlink" title="Assembly.Load()方法，Assembly.LoadFrom()方法，Assembly.LoadFile()方法的区别"></a><code>Assembly.Load()</code>方法，<code>Assembly.LoadFrom()</code>方法，<code>Assembly.LoadFile()</code>方法的区别</h3><p>在C#中，我们要使用反射，首先要搞清楚以下命名空间中几个类的关系:<br><strong>System.Reflection命名空间</strong></p>
+<ol>
+<li>AppDomain:应用程序域，可以将其理解为一组程序集的逻辑容器</li>
+<li>Assembly:程序集类</li>
+<li>Module:模块类</li>
+<li>Type:使用反射得到类型信息的最核心的类<br>他们之间是一种从属关系，也就是说，一个AppDomain可以包含N个Assembly,一个Assembly可以包含N个Module,而一个Module可以包含N个Type.</li>
+</ol>
+<h4 id="Assembly-Load"><a href="#Assembly-Load" class="headerlink" title="Assembly.Load()"></a>Assembly.Load()</h4><p>这个方法通过程序集的长名称（包括程序集名，版本信息，语言文化，公钥标记）来加载程序集的，会加载此程序集引用的其他程序集，<br>一般情况下都应该优先使用 这个方法，他的执行效率比LoadFrom要高很多，而且不会造成重复加载的问题（原因在第2点上说明）<br>使用这个方法的时候， CLR会应用一定的策略来查找程序集，实际上CLR按如下的顺序来定位程序集：</p>
+<ul>
+<li>如果程序集有强名称，在首先在全局程序集缓（GAC）中查找程序集。</li>
+<li>如果程序集的强名称没有正确指定或GAC中找不到，那么通过配置文件中的<codebase>元素指定的URL来查找</codebase></li>
+<li>如果没有指定强名称或是在GAC中找不到，CLR会探测特定的文件夹：<br>假设你的应用程序目录是C:\AppDir,<probing>元素中的privatePath指定了一个路径Path1,你要定位的程序集是AssemblyName.dll则CLR将按照如下顺序定位程序集<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">C:\AppDir\AssemblyName.dll</span><br><span class="line">C:\AppDir\AssemblyName\AssemblyName.dll</span><br><span class="line">C:\AppDir\Path1\AssemblyName.dll</span><br><span class="line">C:\AppDir\Path1\AssemblyName\AssemblyName.dll</span><br></pre></td></tr></table></figure>
+</probing></li>
+</ul>
+<p>如果以上方法不能找到程序集，会发生编译错误，如果是动态加载程序集，会在运行时抛出异常！</p>
+<h4 id="Assembly-LoadFrom"><a href="#Assembly-LoadFrom" class="headerlink" title="Assembly.LoadFrom()"></a>Assembly.LoadFrom()</h4><p>这个方法从指定的路径来加载程序集，实际上这个方法被调用的时候，CLR会打开这个文件，获取其中的程序集版本，语言文化，公钥标记等信息，把他们传递给 Load方法，<br>接着，Load方法采用上面的策略来查找程序集。如果找到了程序集，会和LoadFrom方法中指定的路径做比较，如果路径相同，该程序集 会被认为是应用程序的一部分，<br>如果路径不同或Load方法没有找到程序集，那该程序集只是被作为一个”数据文件”来加载，不会被认为是应用程序的一部分。<br>这就是在第1点中提到的Load方法比LoadFrom方法的执行效率高的原因。另外，由于可能把程序集作为”数据文件”来加载，所以使用 LoadFrom从不同路径加载相同程序集的时候会导致重复加载。<br>当然这个方法会加载此程序集引用的其他程序集。</p>
+<h4 id="Assembly-LoadFile"><a href="#Assembly-LoadFile" class="headerlink" title="Assembly.LoadFile()"></a>Assembly.LoadFile()</h4><p>这个方法是从指定的文件来加载程序集，和上面方法的不同之处是这个方法不会加载此程序集引用的其他程序集！<br>结论：一般大家应该优先选择Load方法来加载程序集，如果遇到需要使用LoadFrom方法的时候，最好改变设计而用Load方法来代替！</p>
+<h3 id="另：Assembly-LoadFile与Assembly-LoadFrom的区别"><a href="#另：Assembly-LoadFile与Assembly-LoadFrom的区别" class="headerlink" title="另：Assembly.LoadFile与Assembly.LoadFrom的区别"></a>另：<code>Assembly.LoadFile</code>与<code>Assembly.LoadFrom</code>的区别</h3><ol>
+<li><p>Assembly.LoadFile只载入相应的dll文件，比如Assembly.LoadFile（”abc.dll”），则载入abc.dll,假如abc.dll中引用了def.dll的话，def.dll并不会被载入。<br>Assembly.LoadFrom则不一样，它会载入dll文件及其引用的其他dll,比如上面的例子，def.dll也会被载入。</p>
+</li>
+<li><p>用Assembly.LoadFrom载入一个Assembly时，会先检查前面是否已经载入过相同名字的Assembly,比如abc.dll有两个版本（版本1在目录1下，版本2放在目录2下），程序一开始时载入了版本1,当使用Assembly.LoadFrom（”2\abc.dll”）载入版本2时，不能载入，而是返回版本1.Assembly.LoadFile的话则不会做这样的检查，比如上面的例子换成Assembly.LoadFile的话，则能正确载入版本2.<br>LoadFile:加载指定路径上的程序集文件的内容。LoadFrom: 根据程序集的文件名加载程序集文件的内容。</p>
+</li>
+</ol>
+<p>区别：</p>
+<ul>
+<li>LoadFile 方法用来来加载和检查具有相同标识但位于不同路径中的程序集。但不会加载程序的依赖项。</li>
+<li>LoadFrom 不能用于加载标识相同但路径不同的程序集。</li>
+</ul>
+
+
+  </article>
+
+
+
+<div id="disqus_thread"></div>
+<script>
+
+var disqus_config = function () {
+this.page.url = 'https://no-energy.github.io/2016/02/11/CSharp反射Assembly详细说明/index.html';
+this.page.identifier = undefined;
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+
+s.src = '//noenergyblog.disqus.com/embed.js';
+
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+
+
+
+    </div>
+  </div>
+  <footer class="page-footer"><div class="clearfix">
+</div>
+<div class="right-foot container">
+
+    <a class="backtop wow fadeIn animated" href="#top" >
+        <i class="fa fa-arrow-right"></i>
+    </a>
+    © 2015-2016
+    <a href="https://github.com/No-Energy/">
+        No_Energy
+    </a>
+
+</div>
+<div class="clearfix">
+</div>
+</footer>
+  <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+// comments below to disable loading animation
+function revealOnScroll() {
+  var scrolled = $(window).scrollTop();
+  $(".excerpt, .index-title, .index-meta, p").each(function() {
+    var current = $(this),
+      height = $(window).outerHeight(),
+      offsetTop = current.offset().top;
+    if (scrolled + height + 50 > offsetTop) {
+      current.addClass("animation");
+    }
+  });
+}
+$(window).on("scroll", revealOnScroll);
+$(window).load(revealOnScroll)
+
+// disqus scripts
+
+
+// dropdown scripts
+$(".dropdown").click(function(event) {
+  var current = $(this);
+  if($(current).children(".dropdown-content").hasClass("open")){
+    event.stopPropagation();
+    $(current).children(".dropdown-content").removeClass("open");
+  } else {
+    event.stopPropagation();
+    $(current).children(".dropdown-content").addClass("open");
+  }
+});
+$(document).click(function(){
+    $(".dropdown-content").removeClass("open");
+})
+
+// back to top scripts
+$("a[href='#top']").click(function() {
+  $("html, body").animate({ scrollTop: 0 }, 500);
+  return false;
+});
+</script>
+
+</body>
+</html>

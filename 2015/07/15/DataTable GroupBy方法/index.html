@@ -7,11 +7,15 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="google-site-verification" content="" />
   
-  <title>LINQ</title>
+  <title>DataTable GroupBy方法</title>
   <meta name="author" content="Josh.Yan">
+   <meta name="description" content="DataTable GroupBy()1DataTable.AsEnumerable().GroupBy()
+中间加上.AsEnumerable()方法转化为集合实际使用方式大致如下:
+dt.AsEnumerable().GroupBy(LINQ表达式)
+实际上Group By和Select都属于L">
   
 
-  
+  <meta property="og:title" content="DataTable GroupBy方法"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:site_name" content="No_Energy&#39;s Blog"/>
  <meta property="og:image" content="undefined"/>
@@ -43,98 +47,70 @@ var _hmt = _hmt || [];
       </div>
     </div>
     <div class="container">
-      <nav class="navigator"><nav class="navbar navbar-default navbar-fixed-top">
-  <div class="nav-container">
-
-  <div class="navbar-header">
-    <a href="/" class="navbar-brand">No_Energy</a>
-  </div>
-  
-  <ul class="nav navbar-nav navbar-left">
-
-    <li class="dropdown">
-      <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-        <i class="fa fa-tags fa-lg"></i>
-      </span></a>
-      <ul class="dropdown-content">
-
-          
-           <li><a href="/categories/Net/">.Net</a></li><li><a href="/categories/旅行/">旅行</a></li><li><a href="/categories/LINQ/">LINQ</a></li><li><a href="/categories/Python/">Python</a></li><li><a href="/categories/Hexo/">Hexo</a></li><li><a href="/categories/MSSQL/">MSSQL</a></li>
-
-      </ul>
-    </li>
-  </ul>
-  
-
-  <ul class="nav navbar-nav navbar-right">
-    <li class="dropdown">
-      <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-      <i class="fa fa-link fa-lg"></i>
-      </a>
-      <ul class="dropdown-content">
-        
-          <li>
-            <a href="https://github.com/No-Energy/">
-        GitHub
-      </a>
-    </li>
-     
-          <li>
-            <a href="http://weibo.com/2188164645">
-        Weibo
-      </a>
-    </li>
-     
-    </ul>
-    </li>
-    <li class="archives"><a href="/archives">
-      <i class="fa fa-archive fa-lg"></i>
-    </a></li>
-  </ul>
-  </div>
-</nav></nav>
-
-
-<h1 class="archive-title  category">
-  
-  <i class="fa fa-tag"></i>
-  
-  LINQ
-</h1>
-<div class="archive-num">
-  该分类共 1 篇文章
-</div>
-<div class="archive">
-  
-    
       
 
+  <article class="standard post">
+    <div class="title">
       
+  
+    <h1 class="page-title center">
+        DataTable GroupBy方法
+    </h1>
+  
 
-        
 
-        
+    </div>
+    <div class="meta center">
+      
+<time datetime="2015-07-15T01:16:19.000Z">
+  <i class="fa fa-calendar"></i>&nbsp;
+  2015-07-15
+</time>
 
-        
 
-        </ul></section>
-        <section data-link="year-2016" class="section-year">
-            <h2>2016</h2>
-            <ul class="archive-list">
-                <div class="archive-item">
-                    <div class="archive-time">
-                      01-26
-                    </div>
-                    <div class="archive-detail">
-                      <a href="/2016/01/26/LINQ/" class="archive-link">
-                        LINQ整理
-                      </a>
-                    </div>
-                </div>
-                <hr>
-                
+
     
-</div>
+    &nbsp;
+    <i class="fa fa-tag"></i>&nbsp;
+    <a href="/categories/Net/">.Net</a>
+
+
+
+
+
+    </div>
+    <hr>
+    <div class="picture-container">
+      
+    </div>
+    <h1 id="DataTable-GroupBy"><a href="#DataTable-GroupBy" class="headerlink" title="DataTable GroupBy()"></a>DataTable GroupBy()</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DataTable.AsEnumerable().GroupBy()</span><br></pre></td></tr></table></figure>
+<p>中间加上<code>.AsEnumerable()</code>方法转化为集合<br>实际使用方式大致如下:</p>
+<p>dt.AsEnumerable().GroupBy(<a href="/2016/01/26/LINQ/">LINQ表达式</a>)</p>
+<p>实际上Group By和Select都属于LINQ的使用范畴。</p>
+
+
+  </article>
+
+
+
+<div id="disqus_thread"></div>
+<script>
+
+var disqus_config = function () {
+this.page.url = 'https://no-energy.github.io/2015/07/15/DataTable GroupBy方法/index.html';
+this.page.identifier = undefined;
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+
+s.src = '//noenergyblog.disqus.com/embed.js';
+
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+
 
 
     </div>

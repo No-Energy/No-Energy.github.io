@@ -1,0 +1,174 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="google-site-verification" content="" />
+  
+  <title>数据库简单整理</title>
+  <meta name="author" content="Josh.Yan">
+   <meta name="description" content="数据库简单整理数据库死锁问题当数据库查询或者写入出现问题是，可以通过以下语句查询是否发生死锁12select   request_session_id   spid,OBJECT_NAME(resource_associated_entity_id) tableNamefrom   sys.dm_t">
+  
+
+  <meta property="og:title" content="数据库简单整理"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:site_name" content="No_Energy&#39;s Blog"/>
+ <meta property="og:image" content="undefined"/>
+  
+  <link rel="alternate" href="/atom.xml" title="No_Energy&#39;s Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="http://7xs4ih.com1.z0.glb.clouddn.com/plnV4.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</head>
+
+<body>
+  <div id="main">
+    <div class="behind">
+      <div class="back">
+        <a href="/" class="black-color"><i class="fa fa-times-circle-o"></i></a>
+      </div>
+      <div class="description">
+        &nbsp;I am not a coder.
+      </div>
+    </div>
+    <div class="container">
+      
+
+  <article class="standard post">
+    <div class="title">
+      
+  
+    <h1 class="page-title center">
+        数据库简单整理
+    </h1>
+  
+
+
+    </div>
+    <div class="meta center">
+      
+<time datetime="2016-02-07T05:19:19.000Z">
+  <i class="fa fa-calendar"></i>&nbsp;
+  2016-02-07
+</time>
+
+
+
+    
+    &nbsp;
+    <i class="fa fa-tag"></i>&nbsp;
+    <a href="/categories/MSSQL/">MSSQL</a>
+
+
+
+
+
+    </div>
+    <hr>
+    <div class="picture-container">
+      
+    </div>
+    <h1 id="数据库简单整理"><a href="#数据库简单整理" class="headerlink" title="数据库简单整理"></a>数据库简单整理</h1><h2 id="数据库死锁问题"><a href="#数据库死锁问题" class="headerlink" title="数据库死锁问题"></a>数据库死锁问题</h2><p>当数据库查询或者写入出现问题是，可以通过以下语句查询是否发生死锁<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span>   request_session_id   spid,OBJECT_NAME(resource_associated_entity_id) tableName</span><br><span class="line"><span class="keyword">from</span>   sys.dm_tran_locks <span class="keyword">where</span> resource_type=<span class="string">'OBJECT'</span></span><br></pre></td></tr></table></figure></p>
+<p>若是发生死锁，可以在读取是加上<code>WITH(NOLOCK)</code>来解决读取死锁问题<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="keyword">TABLE</span> <span class="keyword">WITH</span>(NOLOCK)   用来解决读取死死锁的问题</span><br></pre></td></tr></table></figure></p>
+<h2 id="多行内容合并"><a href="#多行内容合并" class="headerlink" title="多行内容合并"></a>多行内容合并</h2><p>当查询结果出现多行而想将结果合并到一行内显示时，可以使用SQL XML PATH。<br>比如以下例句就是你想查询TESTTABLE表TESTCOLUMN字段所具有的约束，并用,号隔开<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> [KEYVALUE]=<span class="keyword">STUFF</span> ((<span class="keyword">select</span> <span class="string">','</span>+[xtype] </span><br><span class="line"><span class="keyword">from</span> INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE <span class="keyword">as</span> i <span class="keyword">inner</span> <span class="keyword">join</span> sysobjects <span class="keyword">as</span> s </span><br><span class="line"><span class="keyword">on</span> s.name=i.CONSTRAINT_NAME </span><br><span class="line"><span class="keyword">WHERE</span> TABLE_NAME=<span class="string">'TESTTABLE'</span> <span class="keyword">and</span> COLUMN_NAME=<span class="string">'TESTCOLUMN'</span> </span><br><span class="line"><span class="keyword">for</span> <span class="keyword">xml</span> <span class="keyword">path</span>(<span class="string">''</span>)),<span class="number">1</span>,<span class="number">1</span>,<span class="string">''</span>)</span><br></pre></td></tr></table></figure></p>
+<h2 id="查询所有符合条件的表和列的描述"><a href="#查询所有符合条件的表和列的描述" class="headerlink" title="查询所有符合条件的表和列的描述"></a>查询所有符合条件的表和列的描述</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*****获取所有表以及列名对应描述(使用表本身字段描述,本身字段不存在搜索匹配描述)*****/</span></span><br><span class="line"><span class="keyword">USE</span> [SVWASTMS]</span><br><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">tbl.name <span class="keyword">AS</span> 表名,</span><br><span class="line">col.name <span class="keyword">AS</span> 列名,</span><br><span class="line"><span class="keyword">ISNULL</span>((<span class="keyword">SELECT</span> ds.value</span><br><span class="line"><span class="keyword">FROM</span> sys.columns c</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> sys.extended_properties ds <span class="keyword">ON</span> ds.major_id = c.object_id <span class="keyword">AND</span> ds.minor_id = c.column_id</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> sysobjects tbs <span class="keyword">ON</span> tbs.id = c.object_id</span><br><span class="line"><span class="keyword">WHERE</span> tbs.name = tbl.name <span class="keyword">AND</span> c.name =col.name),<span class="keyword">ISNULL</span>((</span><br><span class="line"><span class="keyword">SELECT</span> TOP(<span class="number">1</span>) ds.value</span><br><span class="line"><span class="keyword">FROM</span> sys.columns c1</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> sys.extended_properties ds <span class="keyword">ON</span> ds.major_id = c1.object_id <span class="keyword">AND</span> ds.minor_id = c1.column_id</span><br><span class="line"><span class="keyword">WHERE</span> ds.major_id <span class="keyword">in</span> (<span class="keyword">SELECT</span> c2.object_id <span class="keyword">from</span> sys.columns <span class="keyword">as</span>  c2 </span><br><span class="line"><span class="keyword">WHERE</span> c2.name = col.name) <span class="keyword">AND</span> c1.name = col.name),<span class="string">'无'</span>)) <span class="keyword">AS</span> 描述,</span><br><span class="line"><span class="keyword">ISNULL</span>((<span class="keyword">SELECT</span> [KEYVALUE]=<span class="keyword">STUFF</span> ((<span class="keyword">SELECT</span> <span class="string">','</span>+[xtype] <span class="keyword">FROM</span> INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE <span class="keyword">AS</span> i <span class="keyword">INNER</span> <span class="keyword">JOIN</span> sysobjects <span class="keyword">AS</span> s <span class="keyword">ON</span> s.name=i.CONSTRAINT_NAME </span><br><span class="line"><span class="keyword">WHERE</span> TABLE_NAME = tbl.name <span class="keyword">and</span> COLUMN_NAME = col.name <span class="keyword">FOR</span> <span class="keyword">XML</span> <span class="keyword">PATH</span>(<span class="string">''</span>)),<span class="number">1</span>,<span class="number">1</span>,<span class="string">''</span>)),<span class="string">''</span>) <span class="keyword">AS</span> 字段类型</span><br><span class="line"><span class="keyword">FROM</span> sys.tables tbl <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> sys.columns <span class="keyword">col</span> <span class="keyword">ON</span> tbl.object_id = col.object_id</span><br><span class="line"><span class="keyword">WHERE</span> col.object_id <span class="keyword">IN</span> (<span class="keyword">SELECT</span> t.[object_id] <span class="keyword">FROM</span> sys.tables <span class="keyword">AS</span> t,sys.schemas <span class="keyword">AS</span> s <span class="keyword">WHERE</span> t.schema_id = s.schema_id</span><br><span class="line"><span class="keyword">AND</span> s.[<span class="keyword">name</span>] = <span class="string">'dbo'</span></span><br><span class="line"><span class="keyword">AND</span> (t.[<span class="keyword">name</span>] <span class="keyword">LIKE</span> <span class="string">'TT[_]%'</span> <span class="keyword">OR</span> t.[<span class="keyword">name</span>] <span class="keyword">LIKE</span> <span class="string">'TR[_]%'</span> <span class="keyword">OR</span> t.[<span class="keyword">name</span>] <span class="keyword">LIKE</span> <span class="string">'TM[_]%'</span>)     <span class="comment">/*以TT、TR、TM..开头*/</span></span><br><span class="line"><span class="keyword">AND</span> t.[<span class="keyword">name</span>] <span class="keyword">NOT</span> <span class="keyword">LIKE</span> <span class="string">'%[a-z]%'</span>  <span class="keyword">COLLATE</span> chinese_prc_bin)     <span class="comment">/*不包含小写字母*/</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> tbl.name,col.column_id</span><br></pre></td></tr></table></figure>
+
+  </article>
+
+
+
+<div id="disqus_thread"></div>
+<script>
+
+var disqus_config = function () {
+this.page.url = 'https://no-energy.github.io/2016/02/07/数据库简单整理/index.html';
+this.page.identifier = undefined;
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+
+s.src = '//noenergyblog.disqus.com/embed.js';
+
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+
+
+
+    </div>
+  </div>
+  <footer class="page-footer"><div class="clearfix">
+</div>
+<div class="right-foot container">
+
+    <a class="backtop wow fadeIn animated" href="#top" >
+        <i class="fa fa-arrow-right"></i>
+    </a>
+    © 2015-2016
+    <a href="https://github.com/No-Energy/">
+        No_Energy
+    </a>
+
+</div>
+<div class="clearfix">
+</div>
+</footer>
+  <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+// comments below to disable loading animation
+function revealOnScroll() {
+  var scrolled = $(window).scrollTop();
+  $(".excerpt, .index-title, .index-meta, p").each(function() {
+    var current = $(this),
+      height = $(window).outerHeight(),
+      offsetTop = current.offset().top;
+    if (scrolled + height + 50 > offsetTop) {
+      current.addClass("animation");
+    }
+  });
+}
+$(window).on("scroll", revealOnScroll);
+$(window).load(revealOnScroll)
+
+// disqus scripts
+
+
+// dropdown scripts
+$(".dropdown").click(function(event) {
+  var current = $(this);
+  if($(current).children(".dropdown-content").hasClass("open")){
+    event.stopPropagation();
+    $(current).children(".dropdown-content").removeClass("open");
+  } else {
+    event.stopPropagation();
+    $(current).children(".dropdown-content").addClass("open");
+  }
+});
+$(document).click(function(){
+    $(".dropdown-content").removeClass("open");
+})
+
+// back to top scripts
+$("a[href='#top']").click(function() {
+  $("html, body").animate({ scrollTop: 0 }, 500);
+  return false;
+});
+</script>
+
+</body>
+</html>
