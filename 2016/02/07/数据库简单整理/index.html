@@ -20,24 +20,15 @@
   <link rel="alternate" href="/atom.xml" title="No_Energy&#39;s Blog" type="application/atom+xml">
   <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="http://7xs4ih.com1.z0.glb.clouddn.com/plnV4.css">
+  <link rel="stylesheet" href="/css/m.min.css">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  <script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?";
-  var s = document.getElementsByTagName("script")[0];
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
 </head>
 
 <body>
   <div id="main">
     <div class="behind">
       <div class="back">
-        <a href="/" class="black-color"><i class="fa fa-times-circle-o"></i></a>
+        <a href="/" class="black-color"><i class="fa fa-times" aria-hidden="true"></i></a>
       </div>
       <div class="description">
         &nbsp;I am not a coder.
@@ -86,26 +77,15 @@ var _hmt = _hmt || [];
 <h2 id="查询所有符合条件的表和列的描述"><a href="#查询所有符合条件的表和列的描述" class="headerlink" title="查询所有符合条件的表和列的描述"></a>查询所有符合条件的表和列的描述</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*****获取所有表以及列名对应描述(使用表本身字段描述,本身字段不存在搜索匹配描述)*****/</span></span><br><span class="line"><span class="keyword">USE</span> [SVWASTMS]</span><br><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">tbl.name <span class="keyword">AS</span> 表名,</span><br><span class="line">col.name <span class="keyword">AS</span> 列名,</span><br><span class="line"><span class="keyword">ISNULL</span>((<span class="keyword">SELECT</span> ds.value</span><br><span class="line"><span class="keyword">FROM</span> sys.columns c</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> sys.extended_properties ds <span class="keyword">ON</span> ds.major_id = c.object_id <span class="keyword">AND</span> ds.minor_id = c.column_id</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> sysobjects tbs <span class="keyword">ON</span> tbs.id = c.object_id</span><br><span class="line"><span class="keyword">WHERE</span> tbs.name = tbl.name <span class="keyword">AND</span> c.name =col.name),<span class="keyword">ISNULL</span>((</span><br><span class="line"><span class="keyword">SELECT</span> TOP(<span class="number">1</span>) ds.value</span><br><span class="line"><span class="keyword">FROM</span> sys.columns c1</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> sys.extended_properties ds <span class="keyword">ON</span> ds.major_id = c1.object_id <span class="keyword">AND</span> ds.minor_id = c1.column_id</span><br><span class="line"><span class="keyword">WHERE</span> ds.major_id <span class="keyword">in</span> (<span class="keyword">SELECT</span> c2.object_id <span class="keyword">from</span> sys.columns <span class="keyword">as</span>  c2 </span><br><span class="line"><span class="keyword">WHERE</span> c2.name = col.name) <span class="keyword">AND</span> c1.name = col.name),<span class="string">'无'</span>)) <span class="keyword">AS</span> 描述,</span><br><span class="line"><span class="keyword">ISNULL</span>((<span class="keyword">SELECT</span> [KEYVALUE]=<span class="keyword">STUFF</span> ((<span class="keyword">SELECT</span> <span class="string">','</span>+[xtype] <span class="keyword">FROM</span> INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE <span class="keyword">AS</span> i <span class="keyword">INNER</span> <span class="keyword">JOIN</span> sysobjects <span class="keyword">AS</span> s <span class="keyword">ON</span> s.name=i.CONSTRAINT_NAME </span><br><span class="line"><span class="keyword">WHERE</span> TABLE_NAME = tbl.name <span class="keyword">and</span> COLUMN_NAME = col.name <span class="keyword">FOR</span> <span class="keyword">XML</span> <span class="keyword">PATH</span>(<span class="string">''</span>)),<span class="number">1</span>,<span class="number">1</span>,<span class="string">''</span>)),<span class="string">''</span>) <span class="keyword">AS</span> 字段类型</span><br><span class="line"><span class="keyword">FROM</span> sys.tables tbl <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> sys.columns <span class="keyword">col</span> <span class="keyword">ON</span> tbl.object_id = col.object_id</span><br><span class="line"><span class="keyword">WHERE</span> col.object_id <span class="keyword">IN</span> (<span class="keyword">SELECT</span> t.[object_id] <span class="keyword">FROM</span> sys.tables <span class="keyword">AS</span> t,sys.schemas <span class="keyword">AS</span> s <span class="keyword">WHERE</span> t.schema_id = s.schema_id</span><br><span class="line"><span class="keyword">AND</span> s.[<span class="keyword">name</span>] = <span class="string">'dbo'</span></span><br><span class="line"><span class="keyword">AND</span> (t.[<span class="keyword">name</span>] <span class="keyword">LIKE</span> <span class="string">'TT[_]%'</span> <span class="keyword">OR</span> t.[<span class="keyword">name</span>] <span class="keyword">LIKE</span> <span class="string">'TR[_]%'</span> <span class="keyword">OR</span> t.[<span class="keyword">name</span>] <span class="keyword">LIKE</span> <span class="string">'TM[_]%'</span>)     <span class="comment">/*以TT、TR、TM..开头*/</span></span><br><span class="line"><span class="keyword">AND</span> t.[<span class="keyword">name</span>] <span class="keyword">NOT</span> <span class="keyword">LIKE</span> <span class="string">'%[a-z]%'</span>  <span class="keyword">COLLATE</span> chinese_prc_bin)     <span class="comment">/*不包含小写字母*/</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> tbl.name,col.column_id</span><br></pre></td></tr></table></figure>
 
   </article>
+  </script>
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+  </script>
+  <div class="busuanzi center">
+    页阅读量:&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;・&nbsp;
+    站访问量:&nbsp;<span id="busuanzi_value_site_pv"></span>&nbsp;・&nbsp;
+    站访客数:&nbsp;<span id="busuanzi_value_site_uv"></span>
+  </div>
 
-
-
-<div id="disqus_thread"></div>
-<script>
-
-var disqus_config = function () {
-this.page.url = 'https://no-energy.github.io/2016/02/07/数据库简单整理/index.html';
-this.page.identifier = undefined;
-};
-
-(function() { // DON'T EDIT BELOW THIS LINE
-var d = document, s = d.createElement('script');
-
-s.src = '//noenergyblog.disqus.com/embed.js';
-
-s.setAttribute('data-timestamp', +new Date());
-(d.head || d.body).appendChild(s);
-})();
-</script>
 
 
 
@@ -114,15 +94,17 @@ s.setAttribute('data-timestamp', +new Date());
   <footer class="page-footer"><div class="clearfix">
 </div>
 <div class="right-foot container">
-
-    <a class="backtop wow fadeIn animated" href="#top" >
+    <div class="firstrow">
+        <a href="#top" >
         <i class="fa fa-arrow-right"></i>
-    </a>
-    © 2015-2016
-    <a href="https://github.com/No-Energy/">
+        </a>
+        © 2015-2016
+    </div>
+    <div class="secondrow">
+        <a href="https://github.com/No-Energy/">
         No_Energy
-    </a>
-
+        </a>
+    </div>
 </div>
 <div class="clearfix">
 </div>
@@ -137,13 +119,11 @@ function revealOnScroll() {
     var current = $(this),
       height = $(window).outerHeight(),
       offsetTop = current.offset().top;
-    if (scrolled + height + 50 > offsetTop) {
-      current.addClass("animation");
-    }
+    (scrolled + height + 50 > offsetTop) ? current.addClass("animation"):'';
   });
 }
 $(window).on("scroll", revealOnScroll);
-$(window).load(revealOnScroll)
+$(document).ready(revealOnScroll)
 
 // disqus scripts
 
@@ -151,13 +131,8 @@ $(window).load(revealOnScroll)
 // dropdown scripts
 $(".dropdown").click(function(event) {
   var current = $(this);
-  if($(current).children(".dropdown-content").hasClass("open")){
-    event.stopPropagation();
-    $(current).children(".dropdown-content").removeClass("open");
-  } else {
-    event.stopPropagation();
-    $(current).children(".dropdown-content").addClass("open");
-  }
+  event.stopPropagation();
+  $(current).children(".dropdown-content")[($(current).children(".dropdown-content").hasClass("open"))?'removeClass':'addClass']("open")
 });
 $(document).click(function(){
     $(".dropdown-content").removeClass("open");
