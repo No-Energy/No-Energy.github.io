@@ -215,7 +215,7 @@ toc: true
 ![](http://ww1.sinaimg.cn/mw690/826cbe25gw1f4djwsg7kcj21kw11x4qp.jpg)
 [再来一罐](http://ww1.sinaimg.cn/large/826cbe25gw1f4djwsg7kcj21kw11x4qp.jpg)
 
-说起来这古城外面还有开越野卡丁车的，价格公道童叟无欺还能讲价。比我成功打了7折。
+说起来这古城外面还有开越野卡丁车的，价格公道童叟无欺还能讲价。比如我成功打了7折。
 
 ![](http://ww1.sinaimg.cn/mw690/826cbe25gw1f4djy51tm7j21kw11x4qp.jpg)
 [可惜是摆拍](http://ww4.sinaimg.cn/large/826cbe25gw1f4djy51tm7j21kw11x4qp.jpg)
