@@ -6,7 +6,7 @@ toc: true
 ---
 # LINQ整理
 ## 简单的linq语法
-``` c
+``` csharp
 //1
 var ss = from r in db.Am_recProScheme
          select r;
@@ -16,7 +16,7 @@ var ss1 = db.Am_recProScheme;
 string sssql = "select * from Am_recProScheme";
 ```
 ## 带where的查询
-``` c
+``` csharp
 //1
 var ss = from r in db.Am_recProScheme
          where r.rpId > 10
@@ -27,7 +27,7 @@ var ss1 = db.Am_recProScheme.Where(p => p.rpId > 10);
 string sssql = "select * from Am_recProScheme where rpid>10";
 ```
 ## 简单的函数计算（count，min，max，sum）
-``` c
+``` csharp
 //1
 //获取最大的rpId
 var ss = (from r in db.Am_recProScheme
@@ -54,7 +54,7 @@ string sssql = "select max(rpId) from Am_recProScheme";
        sssql = "select sum(rpId) from Am_recProScheme";
 ```
 ## 排序order by desc/asc
-``` c
+``` csharp
 var ss = from r in db.Am_recProScheme
          where r.rpId > 10
          orderby r.rpId descending  //倒序     //ascending  //正序
@@ -67,7 +67,7 @@ var ss2 = db.Am_recProScheme.OrderByDescending(p => p.rpId).Where(p => p.rpId > 
 string sssql = "select * from Am_recProScheme where rpid>10 order by rpId [desc|asc]";
 ```
 ## top(1)
-``` c
+``` csharp
 //如果取最后一个可以按倒叙排列再取值
 var ss = (from r in db.Am_recProScheme                     
           select r).FirstOrDefault();
@@ -77,7 +77,7 @@ var ss1 = db.Am_recProScheme.FirstOrDefault();
 string sssql = "select top(1) * from Am_recProScheme";
 ```
 ## 跳过前面多少条数据取余下的数据
-``` c
+``` csharp
 //1
 var ss = (from r in db.Am_recProScheme
           orderby r.rpId descending
@@ -88,7 +88,7 @@ var ss1 = db.Am_recProScheme.OrderByDescending(p => p.rpId).Skip(10).ToList();
 string sssql = "select * from  (select ROW_NUMBER()over(order by rpId desc) as rowNum, * from [Am_recProScheme]) as t where rowNum>10";
 ```
 ## 分页数据查询
-``` c
+``` csharp
 //1
 var ss = (from r in db.Am_recProScheme
           where r.rpId > 10
@@ -100,7 +100,7 @@ var ss1 = db.Am_recProScheme.OrderByDescending(p => p.rpId).Where(p => p.rpId > 
 string sssql = "select * from  (select ROW_NUMBER()over(order by rpId desc) as rowNum, * from [Am_recProScheme]) as t where rowNum>10 and rowNum<=20";
 ```
 ## 包含，类似like '%%'
-``` c
+``` csharp
 //1
 var ss = from r in db.Am_recProScheme
          where r.SortsText.Contains("张")
@@ -111,7 +111,7 @@ var ss1 = db.Am_recProScheme.Where(p => p.SortsText.Contains("张")).ToList();
 string sssql = "select * from Am_recProScheme where SortsText like '%张%'";
 ```
 ## 分组group by
-``` c
+``` csharp
 //1
 var ss = from r in db.Am_recProScheme
          orderby r.rpId descending
@@ -146,7 +146,7 @@ foreach (var t in ss2)
 string sssql = "select recType,min(rpId),max(rpId),sum(rpId) from Am_recProScheme group by recType";
 ```
 ## 连接查询
-``` c
+``` csharp
 //1
 var ss = from r in db.Am_recProScheme
          join w in db.Am_Test_Result on r.rpId equals w.rsId
@@ -158,7 +158,7 @@ var ss1 = db.Am_recProScheme.Join(db.Am_Test_Result, p => p.rpId, r => r.rsId, (
 string sssql = "select r.* from  [Am_recProScheme] as r inner join [dbo].[Am_Test_Result] as t on r.[rpId] = t.[rsId] order by r.[rpId] desc";
 ```
 ## sql中的In
-``` c
+``` csharp
 //1
 var ss = from p in db.Am_recProScheme
                   where (new int?[] { 24, 25,26 }).Contains(p.rpId)

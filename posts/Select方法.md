@@ -6,7 +6,7 @@ toc: true
 ---
 
 # Select方法
-``` c
+``` csharp
 Select();//全部查出来   
 Select(过滤条件);//根据过滤条件进行过滤，如Select("columnname1   like   '%xx%'");   
 Select(过滤条件,排序字段);//过滤，并排序，如Select("columnname1   like   '%xx%'",columnname2); 
@@ -19,12 +19,12 @@ Select方法有4个重载，我们经常用到的就是`DataTable.Select(String)
 我觉得就是类似sql的语法而已。 
 
 不过我试了试，不支持BETWEEN AND，举个成功的例子: 
-``` c
+``` csharp
 //FromTime 和ToTime 是两个DateTime类型的变量；occurTime是dTable里面的列名； 
 DataRow[] datarows = dTable.Select("occurTime >= '" + FromTime + "' and occurTime <= '" + ToTime+"'"); 
 ```
 DataTable.Select()方法里面支持简单的过滤和排序，不支持复杂的条件过滤和排序。里面的字符串必须是列名和数据，以及>,<,=,<>等关系运算符。举几个例子： 
-``` c
+``` csharp
 DataRow[]   row   =   Detailtb.Select("WZMC='"+MaterialName+"' and   CZ='"+MaterialTexture+"   and   GG='"+MaterialSpecs+"'");    
 DataTable.Select("City Like 'B%'"); 
 DataTable.Select("name='" + a +"'"); 

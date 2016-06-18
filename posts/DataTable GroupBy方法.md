@@ -6,7 +6,7 @@ toc: true
 ---
 
 # DataTable GroupBy()
-``` c
+``` csharp
 DataTable.AsEnumerable().GroupBy()
 ```
 中间加上`.AsEnumerable()`方法转化为集合

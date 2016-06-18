@@ -28,7 +28,7 @@ toc: true
  
 ## System.Reflection.Assembly类
 通过Assembly可以动态加载程序集，并查看程序集的内部信息，其中最常用的就是`Load()`这个方法。
-``` c
+``` csharp
 Assembly assembly=Assembly.Load("MyAssembly");
 ```
 利用Assembly的`object CreateInstance(string)`方法可以反射创建一个对象，参数0为类名。
@@ -36,22 +36,22 @@ Assembly assembly=Assembly.Load("MyAssembly");
 ## System.Type类
 Type是最常用到的类，通过Type可以得到一个类的内部信息，也可以通过它反射创建一个对象。一般有三个常用的方法可得到Type对象。
 利用`typeof()`得到Type对象
-``` c
+``` csharp
 Type type=typeof(Example);
 ```
 利用`System.Object.GetType()`得到Type对象
-``` c
+``` csharp
 Example example=new Example();
 Type type=example.GetType();
 ```
 利用`System.Type.GetType()`得到Type对象
-``` c
+``` csharp
 Type type=Type.GetType("MyAssembly.Example",false,true);
 ```
 注意参数0是类名，参数1表示若找不到对应类时是否抛出异常，参数1表示类名是否区分大小写
 例子：
 我们最常见的是利用反射与Activator结合来创建对象。
-``` c
+``` csharp
 Assembly assembly= Assembly.Load("MyAssembly");
 Type type=assembly.GetType("Example");
 object obj=Activator.CreateInstance(type);
@@ -59,7 +59,7 @@ object obj=Activator.CreateInstance(type);
 
 ## 反射方法
 ### 通过 System.Reflection.MethodInfo能查找到类里面的方法
-``` c
+``` csharp
 Type type=typeof(Example);  
 MethodInfo[] listMethodInfo=type.GetMethods();  
 foreach(MethodInfo methodInfo in listMethodInfo)  
@@ -67,7 +67,7 @@ Cosole.WriteLine("Method name is "+methodInfo.Name);
 ```
 
 ### 我们也能通过反射方法执行类里面的方法
-``` c
+``` csharp
 Assembly assembly= Assembly.Load("MyAssembly");  
 Type type=assembly.GetType("Example");  
 object obj=Activator.CreateInstance(type);  
@@ -78,7 +78,7 @@ methodInfo.Invoke(obj,null);  //参数1类型为object[]，代表Hello World方�
 ## 反射属性
 ### 通过 System.Reflection.PropertyInfo 能查找到类里面的属性
 常用的方法有GetValue（object,object[]) 获取属性值和 SetValue(object,object,object[]) 设置属性值
-``` c
+``` csharp
 Type type=typeof(Example);  
 PropertyInfo[] listPropertyInfo=type.GetProperties();  
 foreach(PropertyInfo propertyInfo in listPropertyInfo)  
@@ -86,7 +86,7 @@ Cosole.WriteLine("Property name is "+ propertyInfo.Name);
 ```
 
 ### 我们也可以通过以下方法设置或者获取一个对象的属性值
-``` c
+``` csharp
 Assembly assembly=Assembly.Load("MyAssembly");  
 Type type=assembly.GetType("Example");  
 object obj=Activator.CreateInstance(type);  
@@ -109,7 +109,7 @@ foreach(object attribute in typeAttributes)
 Console.WriteLine("Attributes description is "+attribute.ToString());  
 ```
 通过下面例子，可以获取Example类Name属性的所有特性通过下面例子，可以获取Example类Name属性的所有特性
-``` c
+``` csharp
 public class Example  
 {  
     [DataMemberAttribute]  
