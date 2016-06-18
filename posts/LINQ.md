@@ -29,22 +29,22 @@ string sssql = "select * from Am_recProScheme where rpid>10";
 ## 简单的函数计算（count，min，max，sum）
 ``` c
 //1
-////获取最大的rpId
-//var ss = (from r in db.Am_recProScheme
-//          select r).Max(p => p.rpId);
-////获取最小的rpId
-//var ss = (from r in db.Am_recProScheme
-//          select r).Min(p => p.rpId);
+//获取最大的rpId
+var ss = (from r in db.Am_recProScheme
+          select r).Max(p => p.rpId);
+//获取最小的rpId
+var ss = (from r in db.Am_recProScheme
+          select r).Min(p => p.rpId);
 //获取结果集的总数
-//var ss = (from r in db.Am_recProScheme                  
-//         select r).Count();
+var ss = (from r in db.Am_recProScheme                  
+         select r).Count();
 //获取rpId的和
 var ss = (from r in db.Am_recProScheme
           select r).Sum(p => p.rpId);
 //2
-//var ss1 = db.Am_recProScheme.Max(p=>p.rpId);
-//var ss1 = db.Am_recProScheme.Min(p => p.rpId);
-//var ss1 = db.Am_recProScheme.Count() ;
+var ss1 = db.Am_recProScheme.Max(p=>p.rpId);
+var ss1 = db.Am_recProScheme.Min(p => p.rpId);
+var ss1 = db.Am_recProScheme.Count() ;
 var ss1 = db.Am_recProScheme.Sum(p => p.rpId);
 Response.Write(ss);
 //3
