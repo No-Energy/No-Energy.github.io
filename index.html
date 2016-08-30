@@ -16,6 +16,7 @@
   <meta property="og:site_name" content="No_Energy&#39;s Blog"/>
  <meta property="og:image" content="undefined"/>
   
+  <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
   <link rel="alternate" href="/atom.xml" title="No_Energy&#39;s Blog" type="application/atom+xml">
   <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -50,13 +51,16 @@
       <ul class="dropdown-content">
 
           
-           <li><a href="/categories/旅行/">旅行</a></li><li><a href="/categories/Python/">Python</a></li><li><a href="/categories/Net/">.Net</a></li><li><a href="/categories/Hexo/">Hexo</a></li><li><a href="/categories/MSSQL/">MSSQL</a></li><li><a href="/categories/LINQ/">LINQ</a></li>
+           <li><a href="/categories/Net/">.Net</a></li><li><a href="/categories/旅行/">旅行</a></li><li><a href="/categories/LINQ/">LINQ</a></li><li><a href="/categories/Python/">Python</a></li><li><a href="/categories/Hexo/">Hexo</a></li><li><a href="/categories/MSSQL/">MSSQL</a></li>
 
       </ul>
     </li>
   </ul>
   
-
+  <div id="site_search" class="">
+  <input type="text" id="local-search-input" name="q" placeholder="search" class="form-control"/>
+</div>
+<div id="local-search-result"></div>
 
 
   <ul class="nav navbar-nav navbar-right">
@@ -106,7 +110,7 @@
     旅行日记-敦煌前言初闻敦煌，应该是在小学的时候，那会课本上有篇文章写了莫高窟，印象里依稀还能记得，那上面说到飞天，课本仿佛还有图片。然后便是五年级的时候，那时候的语文老师是个比较有涵养的人，有空便会给我们读一些文章，一开始给我们念《男生贾里》，后来，是《文化苦旅》。在那之后敦煌在
   
   <a href="/2016/05/30/Dunhuang/">
-    更多
+    more
   </a>
   </div>
   <div class="index-meta">
@@ -155,7 +159,7 @@
 前言本来自己整理的资料都是存放在OneNote上，后来也算是一个程序员的信仰，于是在GtiHub上建站，由于不是做web
   
   <a href="/2016/05/04/github利用hexo搭建blog/">
-    更多
+    more
   </a>
   </div>
   <div class="index-meta">
@@ -203,7 +207,7 @@
     Python同时存在2.#和3.#版本时的操作命令命令默认python和pip是版本2.#要使用3.#版本可以使用命令python3和pip3，以此类推同理如果默认是3.#版本可以使用python2和pip2使用命令，以此类推。
   
   <a href="/2016/04/25/Python同时存在2和3版本/">
-    更多
+    more
   </a>
   </div>
   <div class="index-meta">
@@ -251,7 +255,7 @@
     Python urllib的urlretrieve()函数解析下面我们再来看看 urllib 模块提供的 urlretrieve() 函数。urlretrieve() 方法直接将远程数据下载到本地。123&gt;&gt;&gt; help(urllib.urlretrieve)H
   
   <a href="/2016/04/25/Python urlliburlretrieve/">
-    更多
+    more
   </a>
   </div>
   <div class="index-meta">
@@ -301,7 +305,7 @@
 主要用到第三方库requests #第三方库，类似于urllib.request，是Python较好用的http clientbs4 #第三方库，Beaut
   
   <a href="/2016/04/25/python spider/">
-    更多
+    more
   </a>
   </div>
   <div class="index-meta">
@@ -355,7 +359,7 @@
 反射是一个程序集发现及运行的过程，通过反射可以得到.exe或.dll等程序集内部的信息。使用反射可以看到一个程序集内
   
   <a href="/2016/02/11/CSharp反射Assembly详细说明/">
-    更多
+    more
   </a>
   </div>
   <div class="index-meta">
@@ -403,7 +407,7 @@
     数据库简单整理数据库死锁问题当数据库查询或者写入出现问题是，可以通过以下语句查询是否发生死锁12select   request_session_id   spid,OBJECT_NAME(resource_associated_entity_id) tableNamefrom 
   
   <a href="/2016/02/07/数据库简单整理/">
-    更多
+    more
   </a>
   </div>
   <div class="index-meta">
@@ -451,7 +455,7 @@
     LINQ整理简单的linq语法1234567//1var ss = from r in db.Am_recProScheme         select r;//2var ss1 = db.Am_recProScheme;//3string sssql = "select * 
   
   <a href="/2016/01/26/LINQ/">
-    更多
+    more
   </a>
   </div>
   <div class="index-meta">
@@ -499,7 +503,7 @@
     通过委托使用主线程控件比如当前处于一个winform界面,而子线程无法直接修改父线程控件,但是可以通过委托父线程来实现修改。123456789101112delegate void ChangeWinform(); //定义委托类型private void BackgroundP
   
   <a href="/2016/01/04/通过委托使用主线程控件/">
-    更多
+    more
   </a>
   </div>
   <div class="index-meta">
@@ -547,7 +551,7 @@
     Python os._exit() sys.exit()概述python的程序有两中退出方式：os._exit()， sys.exit()。本文介绍这两种方式的区别和选择。os._exit()会直接将python程序终止，之后的所有代码都不会继续执行。sys.exit()会引发一
   
   <a href="/2015/10/21/Python_os._exit_sys.exit/">
-    更多
+    more
   </a>
   </div>
   <div class="index-meta">
@@ -604,6 +608,7 @@
 </div>
 </footer>
   <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<script src="/js/search.js"></script>
 <script type="text/javascript">
 
 // comments below to disable loading animation
@@ -637,6 +642,11 @@ $("a[href='#top']").click(function() {
   $("html, body").animate({ scrollTop: 0 }, 500);
   return false;
 });
+
+
+var path = "/search.xml";
+searchFunc(path, 'local-search-input', 'local-search-result');
+
 </script>
 
 </body>

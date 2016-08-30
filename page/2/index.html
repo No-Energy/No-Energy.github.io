@@ -16,6 +16,7 @@
   <meta property="og:site_name" content="No_Energy&#39;s Blog"/>
  <meta property="og:image" content="undefined"/>
   
+  <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
   <link rel="alternate" href="/atom.xml" title="No_Energy&#39;s Blog" type="application/atom+xml">
   <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -50,13 +51,16 @@
       <ul class="dropdown-content">
 
           
-           <li><a href="/categories/旅行/">旅行</a></li><li><a href="/categories/Python/">Python</a></li><li><a href="/categories/Net/">.Net</a></li><li><a href="/categories/Hexo/">Hexo</a></li><li><a href="/categories/MSSQL/">MSSQL</a></li><li><a href="/categories/LINQ/">LINQ</a></li>
+           <li><a href="/categories/Net/">.Net</a></li><li><a href="/categories/旅行/">旅行</a></li><li><a href="/categories/LINQ/">LINQ</a></li><li><a href="/categories/Python/">Python</a></li><li><a href="/categories/Hexo/">Hexo</a></li><li><a href="/categories/MSSQL/">MSSQL</a></li>
 
       </ul>
     </li>
   </ul>
   
-
+  <div id="site_search" class="">
+  <input type="text" id="local-search-input" name="q" placeholder="search" class="form-control"/>
+</div>
+<div id="local-search-result"></div>
 
 
   <ul class="nav navbar-nav navbar-right">
@@ -109,7 +113,7 @@ dt.AsEnumerable().GroupBy(LINQ表达式)
 实际上Group By和
   
   <a href="/2015/07/15/DataTable GroupBy方法/">
-    更多
+    more
   </a>
   </div>
   <div class="index-meta">
@@ -157,7 +161,7 @@ dt.AsEnumerable().GroupBy(LINQ表达式)
     Select方法123Select();//全部查出来   Select(过滤条件);//根据过滤条件进行过滤，如Select("columnname1   like   '%xx%'");   Select(过滤条件,排序字段);//过滤，并排序，如Select("column
   
   <a href="/2015/07/14/Select方法/">
-    更多
+    more
   </a>
   </div>
   <div class="index-meta">
@@ -205,7 +209,7 @@ dt.AsEnumerable().GroupBy(LINQ表达式)
     属性的表达方式在程序编写中，经常会用到get和set方法，但是当需要封装的是一个’Dictionary’或者’List’时，简单的get和set方法就不再能满足。所以在C#可以使用this方法来满足12345public object this[string key]&#123;
   
   <a href="/2015/07/14/属性表达方式/">
-    更多
+    more
   </a>
   </div>
   <div class="index-meta">
@@ -262,6 +266,7 @@ dt.AsEnumerable().GroupBy(LINQ表达式)
 </div>
 </footer>
   <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<script src="/js/search.js"></script>
 <script type="text/javascript">
 
 // comments below to disable loading animation
@@ -295,6 +300,11 @@ $("a[href='#top']").click(function() {
   $("html, body").animate({ scrollTop: 0 }, 500);
   return false;
 });
+
+
+var path = "/search.xml";
+searchFunc(path, 'local-search-input', 'local-search-result');
+
 </script>
 
 </body>
