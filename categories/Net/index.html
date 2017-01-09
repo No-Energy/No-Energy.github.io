@@ -25,6 +25,8 @@
 </head>
 
 <body>
+  <a id="top"></a>
+  <div id='wx_pic' style='display:none;'><img src='/wx_share.png'/></div>
   <div id="main">
     <div class="behind">
       <div class="back">
@@ -51,7 +53,7 @@
       <ul class="dropdown-content">
 
           
-           <li><a href="/categories/Net/">.Net</a></li><li><a href="/categories/旅行/">旅行</a></li><li><a href="/categories/LINQ/">LINQ</a></li><li><a href="/categories/Python/">Python</a></li><li><a href="/categories/Hexo/">Hexo</a></li><li><a href="/categories/MSSQL/">MSSQL</a></li>
+           <li><a href="/categories/Net/">.Net</a></li><li><a href="/categories/旅行/">旅行</a></li><li><a href="/categories/Python/">Python</a></li><li><a href="/categories/LINQ/">LINQ</a></li><li><a href="/categories/Hexo/">Hexo</a></li><li><a href="/categories/MSSQL/">MSSQL</a></li>
 
       </ul>
     </li>
@@ -217,7 +219,7 @@
 </div>
 <div class="right-foot container">
     <div class="firstrow">
-        <a href="#top" >
+        <a href="#top" target="_self">
         <i class="fa fa-arrow-right"></i>
         </a>
         © 2015-2016
@@ -235,19 +237,6 @@
 <script src="/js/search.js"></script>
 <script type="text/javascript">
 
-// comments below to disable loading animation
-function revealOnScroll() {
-  var scrolled = $(window).scrollTop();
-  $(".excerpt, .index-title, .index-meta, p").each(function() {
-    var current = $(this),
-      height = $(window).outerHeight(),
-      offsetTop = current.offset().top;
-    (scrolled + height + 50 > offsetTop) ? current.addClass("animation"):'';
-  });
-}
-$(window).on("scroll", revealOnScroll);
-$(document).ready(revealOnScroll)
-
 // disqus scripts
 
 
@@ -260,13 +249,6 @@ $(".dropdown").click(function(event) {
 $(document).click(function(){
     $(".dropdown-content").removeClass("open");
 })
-
-// back to top scripts
-$("a[href='#top']").click(function() {
-  $("html, body").animate({ scrollTop: 0 }, 500);
-  return false;
-});
-
 
 var path = "/search.xml";
 searchFunc(path, 'local-search-input', 'local-search-result');

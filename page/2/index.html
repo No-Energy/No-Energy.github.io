@@ -25,6 +25,8 @@
 </head>
 
 <body>
+  <a id="top"></a>
+  <div id='wx_pic' style='display:none;'><img src='/wx_share.png'/></div>
   <div id="main">
     <div class="behind">
       <div class="back">
@@ -51,7 +53,7 @@
       <ul class="dropdown-content">
 
           
-           <li><a href="/categories/Net/">.Net</a></li><li><a href="/categories/旅行/">旅行</a></li><li><a href="/categories/LINQ/">LINQ</a></li><li><a href="/categories/Python/">Python</a></li><li><a href="/categories/Hexo/">Hexo</a></li><li><a href="/categories/MSSQL/">MSSQL</a></li>
+           <li><a href="/categories/Net/">.Net</a></li><li><a href="/categories/旅行/">旅行</a></li><li><a href="/categories/Python/">Python</a></li><li><a href="/categories/LINQ/">LINQ</a></li><li><a href="/categories/Hexo/">Hexo</a></li><li><a href="/categories/MSSQL/">MSSQL</a></li>
 
       </ul>
     </li>
@@ -149,54 +151,6 @@ dt.AsEnumerable().GroupBy(LINQ表达式)
   
   
     <h1 class="index-title">
-        <a href="/2015/07/14/Select方法/">
-            Select方法
-        </a>
-    </h1>
-  
-
-
-  <div class="excerpt">
-  
-    Select方法123Select();//全部查出来   Select(过滤条件);//根据过滤条件进行过滤，如Select("columnname1   like   '%xx%'");   Select(过滤条件,排序字段);//过滤，并排序，如Select("column
-  
-  <a href="/2015/07/14/Select方法/">
-    more
-  </a>
-  </div>
-  <div class="index-meta">
-    
-<time datetime="2015-07-14T03:43:19.000Z" itemprop="datePublished">
-  <i class="fa fa-calendar"></i>&nbsp;
-  07-14
-</time>
-
-
-
-    
-    &nbsp;
-    <i class="fa fa-tag"></i>&nbsp;
-    <a href="/categories/Net/">.Net</a>
-
-
-
-
-
-  </div>
-</li>
-</div>
-<hr>
-
-
-
-
-  
-    
-<div>
-<li class="post-item">
-  
-  
-    <h1 class="index-title">
         <a href="/2015/07/14/属性表达方式/">
             属性的表达方式
         </a>
@@ -239,6 +193,54 @@ dt.AsEnumerable().GroupBy(LINQ表达式)
 
 
   
+    
+<div>
+<li class="post-item">
+  
+  
+    <h1 class="index-title">
+        <a href="/2015/07/14/Select方法/">
+            Select方法
+        </a>
+    </h1>
+  
+
+
+  <div class="excerpt">
+  
+    Select方法123Select();//全部查出来   Select(过滤条件);//根据过滤条件进行过滤，如Select("columnname1   like   '%xx%'");   Select(过滤条件,排序字段);//过滤，并排序，如Select("column
+  
+  <a href="/2015/07/14/Select方法/">
+    more
+  </a>
+  </div>
+  <div class="index-meta">
+    
+<time datetime="2015-07-14T03:43:19.000Z" itemprop="datePublished">
+  <i class="fa fa-calendar"></i>&nbsp;
+  07-14
+</time>
+
+
+
+    
+    &nbsp;
+    <i class="fa fa-tag"></i>&nbsp;
+    <a href="/categories/Net/">.Net</a>
+
+
+
+
+
+  </div>
+</li>
+</div>
+<hr>
+
+
+
+
+  
 </ul>
 <ul class="pager">
     <a class="extend prev" rel="prev" href="/">Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
@@ -251,7 +253,7 @@ dt.AsEnumerable().GroupBy(LINQ表达式)
 </div>
 <div class="right-foot container">
     <div class="firstrow">
-        <a href="#top" >
+        <a href="#top" target="_self">
         <i class="fa fa-arrow-right"></i>
         </a>
         © 2015-2016
@@ -269,19 +271,6 @@ dt.AsEnumerable().GroupBy(LINQ表达式)
 <script src="/js/search.js"></script>
 <script type="text/javascript">
 
-// comments below to disable loading animation
-function revealOnScroll() {
-  var scrolled = $(window).scrollTop();
-  $(".excerpt, .index-title, .index-meta, p").each(function() {
-    var current = $(this),
-      height = $(window).outerHeight(),
-      offsetTop = current.offset().top;
-    (scrolled + height + 50 > offsetTop) ? current.addClass("animation"):'';
-  });
-}
-$(window).on("scroll", revealOnScroll);
-$(document).ready(revealOnScroll)
-
 // disqus scripts
 
 
@@ -294,13 +283,6 @@ $(".dropdown").click(function(event) {
 $(document).click(function(){
     $(".dropdown-content").removeClass("open");
 })
-
-// back to top scripts
-$("a[href='#top']").click(function() {
-  $("html, body").animate({ scrollTop: 0 }, 500);
-  return false;
-});
-
 
 var path = "/search.xml";
 searchFunc(path, 'local-search-input', 'local-search-result');
